@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전자공시 (DART) | ROBOT-SOFT Corp.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #fff; color: #333; padding: 40px; font-family: 'Noto Sans KR', sans-serif; }
+        .dart-wrap { max-width: 1100px; margin: 0 auto; }
+        
+        .dart-header { border-bottom: 3px solid #111; padding-bottom: 30px; margin-bottom: 30px; }
+        .header-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; }
+        .header-top h1 { font-size: 2.2rem; font-weight: 900; letter-spacing: -1px; }
+
+        .search-area { position: relative; width: 350px; }
+        .search-input { width: 100%; padding: 12px 45px 12px 20px; border: 2px solid #eee; border-radius: 50px; font-size: 0.95rem; outline: none; transition: border-color 0.3s; }
+        .search-input:focus { border-color: #0047bb; }
+        .search-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: #888; }
+
+        .filter-bar { display: flex; justify-content: space-between; align-items: center; }
+        .filter-tabs { display: flex; gap: 10px; }
+        .tab { padding: 10px 22px; border: 1px solid #eee; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s; color: #666; }
+        .tab:hover { background: #f8f8f8; }
+        .tab.active { background: #111; color: #fff; border-color: #111; }
+
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        th { border-bottom: 1px solid #111; padding: 15px; text-align: left; font-size: 0.95rem; color: #666; font-weight: 600; background: #fff; position: sticky; top: 0; }
+        td { border-bottom: 1px solid #eee; padding: 22px 15px; font-size: 0.95rem; }
+        
+        .col-num { width: 80px; }
+        .col-title { width: auto; }
+        .col-corp { width: 180px; }
+        .col-date { width: 120px; }
+
+        .num-cell { color: #aaa; font-family: 'Inter'; }
+        .cat-tag { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 800; background: #f0f0f0; margin-right: 12px; color: #555; vertical-align: middle; }
+        .title-link { font-weight: 500; text-decoration: none; color: #111; vertical-align: middle; transition: color 0.2s; }
+        .title-link:hover { color: #0047bb; text-decoration: underline; }
+
+        .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 60px; }
+        .p-btn { width: 40px; height: 40px; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 8px; font-weight: 700; transition: all 0.2s; color: #444; }
+        .p-btn:hover:not(.disabled) { border-color: #0047bb; color: #0047bb; background: #f0f4ff; }
+        .p-btn.active { background: #0047bb; color: #fff; border-color: #0047bb; }
+        .p-btn.disabled { opacity: 0.3; cursor: default; }
+
+        .no-data { text-align: center; padding: 100px 0; color: #999; font-size: 1.1rem; grid-column: 1 / -1; }
+    </style>
+</head>
+<body>
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-container">
+            <div class="search-bar-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" width="30" height="30"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="search-input" placeholder="Search..." data-i18n-placeholder="search-placeholder">
+                <button class="search-close" id="search-close-btn">&times;</button>
+            </div>
+            <div class="search-quick-links">
+                <p class="quick-links-title" data-i18n="quick-links-title">Quick Links</p>
+                <ul>
+                    <li><a href="index.html#services" data-i18n="quick-link-1">??Core Solutions</a></li>
+                    <li><a href="newsroom.html" data-i18n="quick-link-2">??Latest News</a></li>
+                    <li><a href="board.html" data-i18n="quick-link-3">??Technology Forum</a></li>
+                    <li><a href="contact.html" data-i18n="quick-link-4">??Contact Experts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="dart-wrap">
+        <header class="dart-header">
+            <div class="header-top">
+                <div style="display: flex; align-items: center; gap: 20px;">
+                    <button onclick="location.href='index.html'" style="padding: 10px 15px; background: #f0f0f0; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s;" title="홈으로 이동">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </button>
+                    <h1>주요 공시 정보</h1>
+                </div>
+                <div class="search-area">
+                    <input type="text" id="searchInput" class="search-input" placeholder="검색어를 입력하세요 (예: 분기보고서)">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </div>
+            </div>
+            <div class="filter-bar">
+                <div class="filter-tabs" id="filterTabs">
+                    <div class="tab active" data-filter="all">전체</div>
+                    <div class="tab" data-filter="regular">정기공시</div>
+                    <div class="tab" data-filter="major">주요사항보고</div>
+                    <div class="tab" data-filter="audit">외부감사관련</div>
+                </div>
+            </div>
+        </header>
+
+        <div id="tableContainer">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-num">번호</th>
+                        <th class="col-title">공시제목</th>
+                        <th class="col-corp">제출인</th>
+                        <th class="col-date">접수일자</th>
+                    </tr>
+                </thead>
+                <tbody id="disclosureTableBody">
+                    <!-- Dynamic Rows -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination" id="pagination">
+            <!-- Dynamic Pagination Pins -->
+        </div>
+    </div>
+
+    <script>
+        const allDisclosures = [
+            { id: 142, category: 'regular', tag: '유', title: '분기보고서 (2026.03)', corp: '로봇소프트 코퍼레이션', date: '2026.05.15' },
+            { id: 141, category: 'major', tag: '유', title: '타법인 주식 및 출자증권 취득결정 (자율공시)', corp: '로봇소프트 코퍼레이션', date: '2026.05.10' },
+            { id: 140, category: 'major', tag: '유', title: '유형자산 취득결정 (신규 R&D 센터 기공)', corp: '로봇소프트 코퍼레이션', date: '2026.05.02' },
+            { id: 139, category: 'major', tag: '유', title: '단일판매·공급계약체결 (북미향 RSC Genesis 공급 계약)', corp: '로봇소프트 코퍼레이션', date: '2026.04.28' },
+            { id: 138, category: 'regular', tag: '유', title: '최대주주 등의 주식보유변동 보고서', corp: '이선우', date: '2026.04.15' },
+            { id: 137, category: 'regular', tag: '유', title: '사업보고서 (2025.12)', corp: '로봇소프트 코퍼레이션', date: '2026.03.31' },
+            { id: 136, category: 'major', tag: '유', title: '현금·현물 배당 결정', corp: '로봇소프트 코퍼레이션', date: '2026.03.15' },
+            { id: 135, category: 'audit', tag: '유', title: '감사보고서 제출 (2025)', corp: '삼일회계법인', date: '2026.03.10' },
+            { id: 134, category: 'major', tag: '유', title: '대표이사 변경 (각자 대표 체제 전환)', corp: '로봇소프트 코퍼레이션', date: '2026.02.20' },
+            { id: 133, category: 'regular', tag: '유', title: '분기보고서 (2025.09)', corp: '로봇소프트 코퍼레이션', date: '2026.01.15' }
+        ];
+
+        let currentFilter = 'all';
+        let searchQuery = '';
+        let currentPage = 1;
+        const itemsPerPage = 7;
+
+        function renderTable() {
+            const tbody = document.getElementById('disclosureTableBody');
+            const filtered = allDisclosures.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.category === currentFilter;
+                const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+
+            const totalPages = Math.ceil(filtered.length / itemsPerPage);
+            const start = (currentPage - 1) * itemsPerPage;
+            const paginated = filtered.slice(start, start + itemsPerPage);
+
+            tbody.innerHTML = paginated.length ? paginated.map(item => `
+                <tr>
+                    <td class="num-cell">${item.id}</td>
+                    <td>
+                        <span class="cat-tag">${item.tag}</span>
+                        <a href="disclosure_detail_sample.html" class="title-link">${item.title}</a>
+                    </td>
+                    <td>${item.corp}</td>
+                    <td class="num-cell">${item.date}</td>
+                </tr>
+            `).join('') : `<tr><td colspan="4" class="no-data">일치하는 공시 정보가 없습니다.</td></tr>`;
+
+            renderPagination(totalPages);
+        }
+
+        function renderPagination(totalPages) {
+            const pagin = document.getElementById('pagination');
+            if (totalPages <= 1) {
+                pagin.innerHTML = '';
+                return;
+            }
+
+            let html = `<div class="p-btn ${currentPage === 1 ? 'disabled' : ''}" onclick="changePage(${currentPage - 1})">&lt;</div>`;
+            for (let i = 1; i <= totalPages; i++) {
+                html += `<div class="p-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</div>`;
+            }
+            html += `<div class="p-btn ${currentPage === totalPages ? 'disabled' : ''}" onclick="changePage(${currentPage + 1})">&gt;</div>`;
+            pagin.innerHTML = html;
+        }
+
+        function changePage(p) {
+            const filteredCount = allDisclosures.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.category === currentFilter;
+                const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            }).length;
+            const totalPages = Math.ceil(filteredCount / itemsPerPage);
+            
+            if (p < 1 || p > totalPages) return;
+            currentPage = p;
+            renderTable();
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            currentPage = 1;
+            renderTable();
+        });
+
+        document.getElementById('filterTabs').addEventListener('click', (e) => {
+            if (e.target.classList.contains('tab')) {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+                currentFilter = e.target.dataset.filter;
+                currentPage = 1;
+                renderTable();
+            }
+        });
+
+        function changePage(p) {
+            const filteredCount = allDisclosures.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.category === currentFilter;
+                const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesFilter && matchesSearch;
+            }).length;
+            const totalPages = Math.ceil(filteredCount / itemsPerPage);
+            
+            if (p < 1 || p > totalPages) return;
+            currentPage = p;
+            renderTable();
+        }
+
+        // Initial Render
+        renderTable();
+    </script>
+
+    <script src="translations.js"></script>
+</body>
+</html>
+
+    <script src="translations.js"></script>
+</body>
+</html>

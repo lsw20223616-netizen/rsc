@@ -1,0 +1,684 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유게시판 | ROBOT-SOFT Corp.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #f4f6f9; font-family: 'Noto Sans KR', sans-serif; min-height: 100vh; }
+
+        /* ── Page Shell ── */
+        .page-wrap { max-width: 1100px; margin: 0 auto; padding: 130px 20px 80px; }
+
+        /* ── Page Header ── */
+        .board-page-header { margin-bottom: 40px; }
+        .board-page-header h1 { font-size: 2.4rem; font-weight: 900; color: #0047bb; letter-spacing: -1px; }
+        .board-page-header p { color: #888; margin-top: 8px; font-size: 1rem; }
+
+        /* ── Write Button ── */
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .post-count { color: #999; font-size: 0.95rem; }
+        .btn-write { background: #0047bb; color: #fff; border: none; padding: 12px 26px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: background 0.3s ease; }
+        .btn-write:hover { background: #003399; }
+
+        /* ── Post List ── */
+        .post-list { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+        .post-list-header { display: grid; grid-template-columns: 60px 1fr 110px 90px 70px; padding: 14px 24px; background: #f8faff; border-bottom: 1px solid #eee; font-size: 0.85rem; font-weight: 700; color: #888; }
+        .post-row { display: grid; grid-template-columns: 60px 1fr 110px 90px 70px; padding: 18px 24px; border-bottom: 1px solid #f3f3f3; cursor: pointer; transition: background 0.2s ease; align-items: center; }
+        .post-row:last-child { border-bottom: none; }
+        .post-row:hover { background: #f8faff; }
+        .post-num { font-size: 0.9rem; color: #aaa; text-align: center; }
+        .post-title-col { font-size: 1rem; font-weight: 600; color: #222; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding-right: 20px; }
+        .post-title-col .badge { display: inline-block; background: #e8f0ff; color: #0047bb; font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 8px; }
+        .post-author { font-size: 0.9rem; color: #666; }
+        .post-date { font-size: 0.85rem; color: #aaa; }
+        .post-views { font-size: 0.85rem; color: #aaa; text-align: center; display: flex; align-items: center; gap: 4px; }
+
+        .empty-state { text-align: center; padding: 80px 20px; color: #bbb; }
+        .empty-state svg { width: 60px; margin-bottom: 16px; opacity: 0.3; }
+        .empty-state p { font-size: 1.1rem; }
+
+        /* ── Pagination ── */
+        .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 30px; }
+        .page-btn { width: 38px; height: 38px; border-radius: 8px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-weight: 600; transition: all 0.2s; font-size: 0.9rem; }
+        .page-btn:hover, .page-btn.active { background: #0047bb; color: #fff; border-color: #0047bb; }
+
+        /* ── Modal Overlay ── */
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+        .modal-overlay.show { display: flex; }
+
+        /* ── Write Modal ── */
+        .write-modal { background: #fff; border-radius: 16px; padding: 40px; width: 100%; max-width: 680px; box-shadow: 0 30px 80px rgba(0,0,0,0.15); animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 28px; color: #111; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 700; font-size: 0.9rem; color: #444; margin-bottom: 8px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 16px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 1rem; outline: none; transition: border 0.3s; background: #fafafa; resize: none; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #0047bb; background: #fff; }
+        .form-group textarea { height: 180px; }
+        .form-row { display: flex; gap: 16px; }
+        .form-row .form-group { flex: 1; }
+        .modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 8px; }
+        .btn-cancel { padding: 12px 24px; border: 1px solid #ddd; border-radius: 8px; background: #fff; font-weight: 600; cursor: pointer; color: #666; }
+        .btn-cancel:hover { background: #f5f5f5; }
+        .btn-submit { padding: 12px 30px; background: #0047bb; color: #fff; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: background 0.3s; }
+        .btn-submit:hover { background: #003399; }
+
+        /* ── View Modal ── */
+        .view-modal { background: #fff; border-radius: 16px; width: 100%; max-width: 760px; box-shadow: 0 30px 80px rgba(0,0,0,0.15); overflow: hidden; animation: slideUp 0.3s ease; }
+        .view-header { padding: 30px 36px 24px; border-bottom: 1px solid #f0f0f0; }
+        .view-category { display: inline-block; background: #e8f0ff; color: #0047bb; font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 4px; margin-bottom: 12px; }
+        .view-title { font-size: 1.6rem; font-weight: 800; color: #111; line-height: 1.3; margin-bottom: 16px; }
+        .view-meta { display: flex; gap: 20px; font-size: 0.9rem; color: #999; }
+        .view-body { padding: 30px 36px; min-height: 200px; font-size: 1.05rem; line-height: 1.8; color: #333; white-space: pre-wrap; max-height: 400px; overflow-y: auto; }
+        .view-footer { padding: 20px 36px; border-top: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
+        .btn-like { background: #fff; border: 1px solid #ddd; border-radius: 50px; padding: 8px 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: all 0.2s; color: #666; }
+        .btn-like:hover, .btn-like.liked { background: #fff0f3; border-color: #ff4d6d; color: #ff4d6d; }
+        .btn-close-view { background: none; border: 1px solid #ddd; border-radius: 8px; padding: 10px 24px; cursor: pointer; font-weight: 600; color: #666; }
+        .btn-close-view:hover { background: #f5f5f5; }
+
+        /* ── Comments ── */
+        .comment-section { padding: 0 36px 28px; border-top: 1px solid #f0f0f0; margin-top: 4px; }
+        .comment-section h4 { font-size: 1rem; font-weight: 700; color: #333; margin: 20px 0 14px; }
+        .comment-input-wrap { display: flex; gap: 10px; margin-bottom: 20px; }
+        .comment-input-wrap input { flex: 1; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 0.95rem; outline: none; }
+        .comment-input-wrap input:focus { border-color: #0047bb; }
+        .btn-comment-submit { background: #0047bb; color: #fff; border: none; border-radius: 8px; padding: 10px 18px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+        .comment-item { padding: 12px 0; border-bottom: 1px solid #f8f8f8; }
+        .comment-author-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .comment-author { font-weight: 700; font-size: 0.88rem; color: #333; }
+        .comment-time { font-size: 0.8rem; color: #bbb; }
+        .comment-text { font-size: 0.95rem; color: #555; line-height: 1.5; }
+        .comment-name-input { width: 120px; flex-shrink: 0; }
+        .comment-actions { display: flex; gap: 12px; margin-top: 8px; align-items: center; }
+        .btn-comment-action { background: none; border: none; color: #888; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: color 0.2s; padding: 0; }
+        .btn-comment-action:hover { color: #0047bb; }
+        .btn-comment-action.liked { color: #ff4d6d; }
+        .reply-input-wrap { display: none; gap: 10px; margin-top: 12px; padding-left: 16px; border-left: 2px solid #eee; }
+        .reply-input-wrap.show { display: flex; }
+        .reply-item { padding: 10px 0 10px 16px; border-left: 2px solid #eee; border-bottom: 1px solid #f8f8f8; margin-top: 6px; background: #fafcff; border-radius: 0 8px 8px 0; }
+        /* ── Firebase setup notice ── */
+        .setup-notice { background: #fff8e1; border-left: 4px solid #ffc107; padding: 16px 20px; border-radius: 8px; margin-bottom: 24px; font-size: 0.9rem; color: #795548; }
+        .setup-notice strong { display: block; margin-bottom: 4px; font-size: 1rem; color: #5d4037; }
+
+        @media (max-width: 768px) {
+            .post-list-header, .post-row { grid-template-columns: 1fr 80px; }
+            .post-list-header .col-num, .post-list-header .col-views, .post-list-header .col-date, .post-num, .post-date, .post-views { display: none; }
+            .post-author { font-size: 0.8rem; }
+            .write-modal { padding: 24px; }
+            .view-header, .view-body, .view-footer, .comment-section { padding-left: 20px; padding-right: 20px; }
+            .view-title { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-container">
+            <div class="search-bar-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" width="30" height="30"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="search-input" placeholder="Search..." data-i18n-placeholder="search-placeholder">
+                <button class="search-close" id="search-close-btn">&times;</button>
+            </div>
+            <div class="search-quick-links">
+                <p class="quick-links-title" data-i18n="quick-links-title">Quick Links</p>
+                <ul>
+                    <li><a href="index.html#services" data-i18n="quick-link-1">??Core Solutions</a></li>
+                    <li><a href="newsroom.html" data-i18n="quick-link-2">??Latest News</a></li>
+                    <li><a href="board.html" data-i18n="quick-link-3">??Technology Forum</a></li>
+                    <li><a href="contact.html" data-i18n="quick-link-4">??Contact Experts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Header ── -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area" onclick="location.href='index.html'" style="cursor:pointer;">
+                <svg width="36" height="36" viewBox="0 0 100 100">
+                    <defs><linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#0088ff"/><stop offset="100%" style="stop-color:#003366"/></linearGradient></defs>
+                    <rect x="5" y="5" width="90" height="90" rx="18" fill="url(#lg)"/>
+                    <path d="M35 30V70M35 30H55C60.5 30 65 34.5 65 40V45C65 50.5 60.5 55 55 55H35M55 55L70 70" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+                <span class="dept-name" style="font-weight:800;color:#003366;">ROBOT-SOFT Corp.</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" data-i18n="nav-home">홈</a></li>
+                    <li><a href="newsroom.html">기업소식</a></li>
+                    <li><a href="forum.html" style="color:#0047bb;font-weight:800;">자유게시판</a></li>
+                    <li><a href="contact.html">문의</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="lang-selector">
+                    <span id="lang-ko" class="lang-btn active" style="cursor: pointer;">KOR</span>
+                    |
+                    <span id="lang-en" class="lang-btn" style="cursor: pointer;">ENG</span>
+                </div>
+                <button class="search-btn"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
+                <a href="contact.html" class="btn-contact" data-i18n="contact-us">Contact Us</a>
+            </div>
+            <a href="contact.html" class="btn-contact" data-i18n="contact-us">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- ── Firebase Setup Notice (숨기려면 이 div 삭제) ── -->
+    <div id="setup-notice" class="page-wrap" style="padding-bottom:0;">
+        <div class="setup-notice">
+            <strong>⚙️ Firebase 연결이 필요합니다</strong>
+            아래 파일에서 <code>firebaseConfig</code> 값을 실제 Firebase 프로젝트 정보로 교체하세요.
+            Firebase 무료 계정 생성 → 프로젝트 생성 → Firestore 활성화 → 설정값 복사하면 됩니다.
+            연결 전에는 <strong>데모 모드</strong>로 작동합니다 (새로고침 시 초기화).
+        </div>
+    </div>
+
+    <!-- ── Board Page ── -->
+    <div class="page-wrap">
+        <div class="board-page-header">
+            <h1>💬 자유게시판</h1>
+            <p>누구나 자유롭게 소통하는 공간입니다. 건전한 토론을 환영합니다.</p>
+        </div>
+
+        <div class="top-bar">
+            <span class="post-count" id="post-count">전체 0개의 게시글</span>
+            <button class="btn-write" onclick="openWriteModal()">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="#fff"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                글쓰기
+            </button>
+        </div>
+
+        <div class="post-list" id="post-list">
+            <div class="post-list-header">
+                <span class="col-num">번호</span>
+                <span>제목</span>
+                <span>작성자</span>
+                <span class="col-date">날짜</span>
+                <span class="col-views">조회</span>
+            </div>
+            <div id="posts-container">
+                <div class="empty-state">
+                    <svg viewBox="0 0 24 24" fill="#ccc"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+                    <p>첫 번째 게시글을 작성해 보세요!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+    <!-- ── Write Modal ── -->
+    <div class="modal-overlay" id="write-overlay" onclick="closeWriteIfOutside(event)">
+        <div class="write-modal">
+            <div class="modal-title">✏️ 새 글 작성</div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>카테고리</label>
+                    <select id="post-category">
+                        <option>자유</option>
+                        <option>질문</option>
+                        <option>정보공유</option>
+                        <option>기술토론</option>
+                        <option>채용정보</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>닉네임</label>
+                    <input id="post-nickname" type="text" placeholder="닉네임 입력" maxlength="20">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>비밀번호 (수정/삭제용)</label>
+                <input id="post-password" type="password" placeholder="4자리 이상 입력하세요">
+            </div>
+            <div class="form-group">
+                <label>제목</label>
+                <input id="post-title-input" type="text" placeholder="제목을 입력하세요" maxlength="100">
+            </div>
+            <div class="form-group">
+                <label>내용</label>
+                <textarea id="post-content-input" placeholder="내용을 입력하세요 (최대 2000자)" maxlength="2000"></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeWriteModal()">취소</button>
+                <button class="btn-submit" onclick="submitPost()">등록하기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── View Modal ── -->
+    <div class="modal-overlay" id="view-overlay" onclick="closeViewIfOutside(event)">
+        <div class="view-modal">
+            <div class="view-header">
+                <div class="view-category" id="view-category">자유</div>
+                <div class="view-title" id="view-title">제목</div>
+                <div class="view-meta">
+                    <span id="view-author">작성자</span>
+                    <span id="view-date">날짜</span>
+                    <span id="view-views">조회 0</span>
+                </div>
+            </div>
+            <div class="view-body" id="view-body">내용</div>
+            <div class="comment-section">
+                <h4 id="comment-count-label">댓글 0개</h4>
+                <div class="comment-input-wrap">
+                    <input type="text" id="comment-name" class="comment-name-input" placeholder="닉네임" maxlength="20">
+                    <input type="text" id="comment-input" placeholder="댓글을 입력하세요..." maxlength="300">
+                    <button class="btn-comment-submit" onclick="submitComment()">등록</button>
+                </div>
+                <div id="comments-list"></div>
+            </div>
+            <div class="view-footer">
+                <button class="btn-like" id="like-btn" onclick="toggleLike()">
+                    ♡ <span id="like-count">0</span>
+                </button>
+                <div style="display:flex;gap:10px;">
+                    <button class="btn-close-view" onclick="deletePost()">🗑 삭제</button>
+                    <button class="btn-close-view" onclick="closeViewModal()">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK (v9 compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // ══════════════════════════════════════════
+        //  🔧 Firebase 설정 — 아래 값을 교체하세요
+        // ══════════════════════════════════════════
+        const firebaseConfig = {
+            apiKey: "AIzaSyDypiWLuwUXmD_Nv5U0agRV27Uxa8jSq-o",
+            authDomain: "robot-soft.firebaseapp.com",
+            projectId: "robot-soft",
+            storageBucket: "robot-soft.firebasestorage.app",
+            messagingSenderId: "357021325567",
+            appId: "1:357021325567:web:404579da0a0a4fa31354ca"
+        };
+
+        // ── Firebase 초기화 (설정 전엔 로컬 데모 모드) ──
+        let db = null;
+        let useFirebase = false;
+
+        try {
+            if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+                firebase.initializeApp(firebaseConfig);
+                db = firebase.firestore();
+                useFirebase = true;
+                document.getElementById('setup-notice').style.display = 'none';
+            }
+        } catch(e) { console.warn("Firebase 미연결:", e); }
+
+        // ── 로컬 데모 데이터 ──
+        let localPosts = JSON.parse(localStorage.getItem('rsc_posts') || '[]');
+
+        // ── 상태 변수 ──
+        let currentPostId = null;
+        let likedPosts = JSON.parse(localStorage.getItem('rsc_liked') || '[]');
+        let likedComments = JSON.parse(localStorage.getItem('rsc_liked_comments') || '[]');
+        const POSTS_PER_PAGE = 15;
+        let currentPage = 1;
+        let allPosts = [];
+
+        // ══════════════════
+        //  게시글 로드
+        // ══════════════════
+        async function loadPosts() {
+            if (useFirebase) {
+                const snap = await db.collection('forum_posts').orderBy('createdAt', 'desc').get();
+                allPosts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+            } else {
+                allPosts = [...localPosts].reverse();
+            }
+            renderPosts();
+        }
+
+        function renderPosts() {
+            const container = document.getElementById('posts-container');
+            document.getElementById('post-count').textContent = `전체 ${allPosts.length}개의 게시글`;
+
+            if (allPosts.length === 0) {
+                container.innerHTML = `<div class="empty-state"><svg viewBox="0 0 24 24" fill="#ccc"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg><p>첫 번째 게시글을 작성해 보세요!</p></div>`;
+                document.getElementById('pagination').innerHTML = '';
+                return;
+            }
+
+            const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+            const start = (currentPage - 1) * POSTS_PER_PAGE;
+            const pagePosts = allPosts.slice(start, start + POSTS_PER_PAGE);
+
+            container.innerHTML = pagePosts.map((p, i) => `
+                <div class="post-row" onclick="openPost('${p.id}')">
+                    <span class="post-num">${allPosts.length - start - i}</span>
+                    <span class="post-title-col">
+                        <span class="badge">${p.category || '자유'}</span>${escHtml(p.title)}
+                        ${p.commentCount > 0 ? `<span style="color:#0088ff;font-size:0.85rem;margin-left:6px;">[${p.commentCount}]</span>` : ''}
+                    </span>
+                    <span class="post-author">${escHtml(p.nickname)}</span>
+                    <span class="post-date">${formatDate(p.createdAt)}</span>
+                    <span class="post-views">👁 ${p.views || 0}</span>
+                </div>
+            `).join('');
+
+            // Pagination
+            const pg = document.getElementById('pagination');
+            pg.innerHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+                pg.innerHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+            }
+        }
+
+        function goPage(p) { currentPage = p; renderPosts(); window.scrollTo(0, 0); }
+
+        // ══════════════════
+        //  글쓰기
+        // ══════════════════
+        function openWriteModal() {
+            document.getElementById('write-overlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeWriteModal() {
+            document.getElementById('write-overlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        function closeWriteIfOutside(e) { if (e.target.id === 'write-overlay') closeWriteModal(); }
+
+        async function submitPost() {
+            const nick = document.getElementById('post-nickname').value.trim();
+            const title = document.getElementById('post-title-input').value.trim();
+            const content = document.getElementById('post-content-input').value.trim();
+            const category = document.getElementById('post-category').value;
+            const password = document.getElementById('post-password').value;
+
+            if (!nick) { alert('닉네임을 입력해주세요.'); return; }
+            if (!password || password.length < 4) { alert('비밀번호를 4자 이상 입력해주세요.'); return; }
+            if (!title) { alert('제목을 입력해주세요.'); return; }
+            if (!content) { alert('내용을 입력해주세요.'); return; }
+
+            const post = {
+                nickname: nick,
+                title,
+                content,
+                category,
+                password: btoa(password),
+                views: 0,
+                likes: 0,
+                commentCount: 0,
+                createdAt: new Date().toISOString()
+            };
+
+            if (useFirebase) {
+                await db.collection('forum_posts').add({ ...post, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+            } else {
+                post.id = Date.now().toString();
+                localPosts.push(post);
+                localStorage.setItem('rsc_posts', JSON.stringify(localPosts));
+            }
+
+            // Reset form
+            ['post-nickname','post-title-input','post-content-input','post-password'].forEach(id => document.getElementById(id).value = '');
+            closeWriteModal();
+            loadPosts();
+        }
+
+        // ══════════════════
+        //  글 보기
+        // ══════════════════
+        async function openPost(id) {
+            currentPostId = id;
+            let post;
+            if (useFirebase) {
+                const ref = db.collection('forum_posts').doc(id);
+                await ref.update({ views: firebase.firestore.FieldValue.increment(1) });
+                const snap = await ref.get();
+                post = { id, ...snap.data() };
+            } else {
+                post = localPosts.find(p => p.id === id);
+                if (post) { post.views = (post.views || 0) + 1; localStorage.setItem('rsc_posts', JSON.stringify(localPosts)); }
+            }
+            if (!post) return;
+
+            document.getElementById('view-category').textContent = post.category || '자유';
+            document.getElementById('view-title').textContent = post.title;
+            document.getElementById('view-author').textContent = '✍️ ' + post.nickname;
+            document.getElementById('view-date').textContent = '🕐 ' + formatDate(post.createdAt);
+            document.getElementById('view-views').textContent = '👁 ' + (post.views || 0);
+            document.getElementById('view-body').textContent = post.content;
+            document.getElementById('like-count').textContent = post.likes || 0;
+
+            const isLiked = likedPosts.includes(id);
+            const likeBtn = document.getElementById('like-btn');
+            likeBtn.className = 'btn-like' + (isLiked ? ' liked' : '');
+            likeBtn.innerHTML = (isLiked ? '❤️' : '♡') + ' <span id="like-count">' + (post.likes || 0) + '</span>';
+
+            loadComments(id);
+            document.getElementById('view-overlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+            loadPosts(); // refresh view count
+        }
+
+        function closeViewModal() {
+            document.getElementById('view-overlay').classList.remove('show');
+            document.body.style.overflow = '';
+            currentPostId = null;
+        }
+        function closeViewIfOutside(e) { if (e.target.id === 'view-overlay') closeViewModal(); }
+
+        // ══════════════════
+        //  좋아요
+        // ══════════════════
+        async function toggleLike() {
+            if (!currentPostId) return;
+            const already = likedPosts.includes(currentPostId);
+            if (already) {
+                likedPosts = likedPosts.filter(id => id !== currentPostId);
+            } else {
+                likedPosts.push(currentPostId);
+            }
+            localStorage.setItem('rsc_liked', JSON.stringify(likedPosts));
+            const delta = already ? -1 : 1;
+            if (useFirebase) {
+                await db.collection('forum_posts').doc(currentPostId).update({ likes: firebase.firestore.FieldValue.increment(delta) });
+            } else {
+                const p = localPosts.find(p => p.id === currentPostId);
+                if (p) { p.likes = Math.max(0, (p.likes || 0) + delta); localStorage.setItem('rsc_posts', JSON.stringify(localPosts)); }
+            }
+            openPost(currentPostId);
+        }
+
+        // ══════════════════
+        //  삭제
+        // ══════════════════
+        async function deletePost() {
+            const pwd = prompt('삭제하려면 비밀번호를 입력하세요:');
+            if (!pwd) return;
+            let post;
+            if (useFirebase) {
+                const snap = await db.collection('forum_posts').doc(currentPostId).get();
+                post = snap.data();
+            } else { post = localPosts.find(p => p.id === currentPostId); }
+            if (!post || post.password !== btoa(pwd)) { alert('비밀번호가 올바르지 않습니다.'); return; }
+            if (useFirebase) {
+                await db.collection('forum_posts').doc(currentPostId).delete();
+            } else {
+                localPosts = localPosts.filter(p => p.id !== currentPostId);
+                localStorage.setItem('rsc_posts', JSON.stringify(localPosts));
+            }
+            closeViewModal();
+            loadPosts();
+        }
+
+        // ══════════════════
+        //  댓글
+        // ══════════════════
+        async function loadComments(postId) {
+            let comments = [];
+            if (useFirebase) {
+                const snap = await db.collection('forum_posts').doc(postId).collection('comments').get();
+                comments = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+            } else {
+                const p = localPosts.find(p => p.id === postId);
+                comments = p?.comments || [];
+                // 고유 ID가 없는 로컬 댓글에 ID 부여
+                comments.forEach((c, i) => c.id = c.id || `local_comment_${i}`);
+            }
+            
+            // 좋아요(추천) 수 많은 순 -> 작성 시간 오름차순 정렬
+            comments.sort((a, b) => {
+                const aLikes = a.likes || 0;
+                const bLikes = b.likes || 0;
+                if (bLikes !== aLikes) return bLikes - aLikes;
+                return new Date(a.createdAt) - new Date(b.createdAt);
+            });
+
+            const list = document.getElementById('comments-list');
+            document.getElementById('comment-count-label').textContent = `댓글 ${comments.length}개`;
+            if (comments.length === 0) { list.innerHTML = '<p style="color:#ccc;font-size:0.9rem;padding:10px 0;">아직 댓글이 없습니다.</p>'; return; }
+            
+            list.innerHTML = comments.map(c => {
+                const isLiked = likedComments.includes(c.id);
+                const replies = c.replies || [];
+                const repliesHtml = replies.map(r => `
+                    <div class="reply-item">
+                        <div class="comment-author-row">
+                            <span class="comment-author">↳ ${escHtml(r.nickname)}</span>
+                            <span class="comment-time">${formatDate(r.createdAt)}</span>
+                        </div>
+                        <div class="comment-text">${escHtml(r.text)}</div>
+                    </div>
+                `).join('');
+                
+                return `
+                    <div class="comment-item">
+                        <div class="comment-author-row">
+                            <span class="comment-author">${escHtml(c.nickname)}</span>
+                            <span class="comment-time">${formatDate(c.createdAt)}</span>
+                        </div>
+                        <div class="comment-text">${escHtml(c.text)}</div>
+                        <div class="comment-actions">
+                            <button class="btn-comment-action ${isLiked ? 'liked' : ''}" onclick="likeComment('${c.id}')">👍 추천 ${c.likes || 0}</button>
+                            <button class="btn-comment-action" onclick="toggleReplyForm('${c.id}')">💬 답글 달기</button>
+                        </div>
+                        <div class="reply-input-wrap" id="reply-form-${c.id}">
+                            <input type="text" id="reply-name-${c.id}" class="comment-name-input" placeholder="닉네임" maxlength="20">
+                            <input type="text" id="reply-input-${c.id}" placeholder="답글을 입력하세요..." maxlength="300" onkeydown="if(event.key === 'Enter') submitReply('${c.id}')">
+                            <button class="btn-comment-submit" onclick="submitReply('${c.id}')">등록</button>
+                        </div>
+                        <div class="replies-list">${repliesHtml}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function submitComment() {
+            const name = document.getElementById('comment-name').value.trim();
+            const text = document.getElementById('comment-input').value.trim();
+            if (!name) { alert('닉네임을 입력해주세요.'); return; }
+            if (!text) { alert('댓글 내용을 입력해주세요.'); return; }
+            
+            // 입력창 즉시 초기화 (도배 방지)
+            document.getElementById('comment-input').value = '';
+            
+            const comment = { nickname: name, text, likes: 0, replies: [], createdAt: new Date().toISOString() };
+            
+            if (useFirebase) {
+                await db.collection('forum_posts').doc(currentPostId).collection('comments').add({ ...comment, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+                await db.collection('forum_posts').doc(currentPostId).update({ commentCount: firebase.firestore.FieldValue.increment(1) });
+            } else {
+                comment.id = `local_comment_${Date.now()}`;
+                const p = localPosts.find(p => p.id === currentPostId);
+                if (p) { p.comments = [...(p.comments || []), comment]; p.commentCount = p.comments.length; localStorage.setItem('rsc_posts', JSON.stringify(localPosts)); }
+            }
+            
+            loadComments(currentPostId);
+            loadPosts();
+        }
+        
+        async function likeComment(commentId) {
+            if (!currentPostId) return;
+            const already = likedComments.includes(commentId);
+            const delta = already ? -1 : 1;
+            
+            if (already) {
+                likedComments = likedComments.filter(id => id !== commentId);
+            } else {
+                likedComments.push(commentId);
+            }
+            localStorage.setItem('rsc_liked_comments', JSON.stringify(likedComments));
+
+            if (useFirebase) {
+                await db.collection('forum_posts').doc(currentPostId).collection('comments').doc(commentId).update({
+                    likes: firebase.firestore.FieldValue.increment(delta)
+                });
+            } else {
+                const p = localPosts.find(p => p.id === currentPostId);
+                if (p && p.comments) {
+                    const c = p.comments.find(x => x.id === commentId);
+                    if (c) { c.likes = Math.max(0, (c.likes || 0) + delta); localStorage.setItem('rsc_posts', JSON.stringify(localPosts)); }
+                }
+            }
+            loadComments(currentPostId);
+        }
+
+        function toggleReplyForm(commentId) {
+            const form = document.getElementById(`reply-form-${commentId}`);
+            if (form) {
+                form.classList.toggle('show');
+            }
+        }
+
+        async function submitReply(commentId) {
+            const name = document.getElementById(`reply-name-${commentId}`).value.trim();
+            const text = document.getElementById(`reply-input-${commentId}`).value.trim();
+            if (!name) { alert('닉네임을 입력해주세요.'); return; }
+            if (!text) { alert('답글 내용을 입력해주세요.'); return; }
+            
+            document.getElementById(`reply-input-${commentId}`).value = ''; // 즉시 초기화
+            
+            const reply = { nickname: name, text, createdAt: new Date().toISOString() };
+            
+            if (useFirebase) {
+                await db.collection('forum_posts').doc(currentPostId).collection('comments').doc(commentId).update({
+                    replies: firebase.firestore.FieldValue.arrayUnion(reply)
+                });
+            } else {
+                const p = localPosts.find(p => p.id === currentPostId);
+                if (p && p.comments) {
+                    const c = p.comments.find(x => x.id === commentId);
+                    if (c) {
+                        c.replies = c.replies || [];
+                        c.replies.push(reply);
+                        localStorage.setItem('rsc_posts', JSON.stringify(localPosts));
+                    }
+                }
+            }
+            loadComments(currentPostId);
+        }
+
+        // ── Helpers ──
+        function escHtml(str) { return String(str || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+        function formatDate(ts) {
+            if (!ts) return '-';
+            const d = ts?.toDate ? ts.toDate() : new Date(ts);
+            const now = new Date();
+            const diff = now - d;
+            if (diff < 60000) return '방금 전';
+            if (diff < 3600000) return Math.floor(diff/60000) + '분 전';
+            if (diff < 86400000) return Math.floor(diff/3600000) + '시간 전';
+            return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`;
+        }
+
+        // Enter key shortcuts
+        document.getElementById('comment-input').addEventListener('keydown', e => { if (e.key === 'Enter') submitComment(); });
+
+        loadPosts();
+    </script>
+
+    <script src="translations.js"></script>
+</body>
+</html>

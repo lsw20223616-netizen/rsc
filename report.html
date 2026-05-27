@@ -1,0 +1,920 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>경쟁력 | ROBOT-SOFT Corp.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .report-hero {
+            background: #000;
+            padding-top: 80px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .report-breadcrumb {
+            padding: 2rem 0;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .report-title-section {
+            padding-bottom: 4rem;
+        }
+
+        .report-title-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .report-visual-card {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.85)), url('C:/Users/4-410-36/.gemini/antigravity/brain/31801746-6840-449f-8d90-8bd1586f36d2/corporate_campus_panorama_centered_1778726049949.png');
+            background-size: cover;
+            background-position: center center;
+            min-height: 420px;
+            width: 1200px;
+            max-width: 95%;
+            margin: 0 auto;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 2rem 0;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .visual-content {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .visual-left {
+            flex: 0 0 420px;
+        }
+
+        .visual-left h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .visual-left p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .total-capacity {
+            margin-bottom: 1.2rem;
+        }
+
+        .capacity-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: #fff;
+        }
+
+        .capacity-value {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #a288ff;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .capacity-unit {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-left: 0.5rem;
+            color: #fff;
+        }
+
+        .visual-right {
+            flex: 0 0 55%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 3rem;
+            padding-top: 1rem;
+        }
+
+        .stat-box {
+            text-align: right;
+        }
+
+        .stat-box-label {
+            display: block;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .stat-box-value {
+            font-size: 2rem;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .sub-capacity-grid {
+            margin-top: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .sub-capacity-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .sub-label { color: #888; }
+        .sub-value { 
+            font-weight: 700; 
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Advanced Stacked Bar Chart Section */
+        .chart-section {
+            padding: 8rem 0;
+            background: #fff;
+        }
+
+        .chart-header {
+            margin-bottom: 5rem;
+        }
+
+        .chart-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #003366;
+            margin-bottom: 1.2rem;
+        }
+
+        .chart-desc {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .chart-legend {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .chart-outer-container {
+            display: flex;
+            margin-top: 3rem;
+            position: relative;
+            min-height: 500px;
+            align-items: flex-start;
+        }
+
+        .y-axis-area {
+            display: flex;
+            align-items: center;
+            height: 400px;
+            padding-top: 50px; /* Match chart container top padding */
+        }
+
+        .y-axis-label {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            color: #666;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-right: 20px;
+            white-space: nowrap;
+        }
+
+        .y-axis-numbers {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 400px;
+            padding-right: 15px;
+            color: #888;
+            font-size: 0.85rem;
+            border-right: 1px solid #ddd;
+            text-align: right;
+            width: 50px;
+        }
+
+        .bar-chart-container {
+            flex: 1;
+            height: 400px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding-bottom: 0;
+            border-bottom: 2px solid #ccc;
+            position: relative;
+            padding-top: 50px;
+        }
+
+        .bar-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: flex-end;
+            cursor: pointer;
+            padding: 0 4px;
+        }
+
+        .bar-wrapper:hover .bar {
+            filter: brightness(1.1);
+        }
+
+        .bar {
+            width: 38px; /* Slightly wider bars */
+            display: flex;
+            flex-direction: column-reverse;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .segment {
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Updated Stack Colors to match the 'good' image */
+        .seg-1 { background: #9b6bff; } /* Bottom - Others */
+        .seg-2 { background: #5a4bfa; } /* Middle - EMA/International */
+        .seg-3 { background: #1a0dab; } /* Top - FDA */
+
+        .total-label {
+            position: absolute;
+            top: -32px;
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: #000;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .bar-year {
+            margin-top: 15px;
+            font-weight: 500;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .x-axis-title {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .table-btn {
+            display: block;
+            margin: 5rem auto 0;
+            padding: 0.9rem 2.2rem;
+            background: #001a33;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: background 0.3s;
+        }
+
+        .table-btn:hover {
+            background: #003366;
+        }
+
+        /* Data Table View Styles */
+        .table-view-container {
+            display: none; /* Hidden by default */
+            margin-top: 2rem;
+            animation: tableFadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes tableFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .data-table-header {
+            display: flex;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #0047bb;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+
+        .table-title {
+            width: 250px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #0047bb;
+        }
+
+        .table-years {
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .year-col {
+            flex: 1;
+            text-align: right;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #0047bb;
+            padding-right: 5px;
+        }
+
+        .data-row {
+            display: flex;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .data-row.total-row {
+            border-bottom: none;
+            margin-top: 0.5rem;
+            padding: 2.5rem 0;
+        }
+
+        .row-label {
+            width: 250px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.3;
+        }
+
+        .total-row .row-label {
+            color: #111;
+            font-weight: 900;
+        }
+
+        .row-values {
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .val-col {
+            flex: 1;
+            text-align: right;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #666;
+            padding-right: 5px;
+        }
+
+        .total-row .val-col {
+            color: #111;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        .logo-footer {
+            margin-top: 6rem;
+            padding-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f0f0f0;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .logo-footer svg, .logo-footer img {
+            height: 32px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .logo-footer svg:hover, .logo-footer img:hover {
+            opacity: 1;
+        }
+
+        /* Hide chart when table is active */
+        .chart-section.showing-table .chart-outer-container,
+        .chart-section.showing-table .chart-legend,
+        .chart-section.showing-table .x-axis-title {
+            display: none;
+        }
+
+        .chart-section.showing-table .table-view-container {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-container">
+            <div class="search-bar-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" width="30" height="30"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="search-input" placeholder="Search..." data-i18n-placeholder="search-placeholder">
+                <button class="search-close" id="search-close-btn">&times;</button>
+            </div>
+            <div class="search-quick-links">
+                <p class="quick-links-title" data-i18n="quick-links-title">Quick Links</p>
+                <ul>
+                    <li><a href="index.html#services" data-i18n="quick-link-1">??Core Solutions</a></li>
+                    <li><a href="newsroom.html" data-i18n="quick-link-2">??Latest News</a></li>
+                    <li><a href="board.html" data-i18n="quick-link-3">??Technology Forum</a></li>
+                    <li><a href="contact.html" data-i18n="quick-link-4">??Contact Experts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area" onclick="location.href='index.html'">
+                <svg width="36" height="36" viewBox="0 0 100 100" class="logo-icon" style="margin-right: 12px;">
+                    <defs>
+                        <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#0088ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#003366;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="5" y="5" width="90" height="90" rx="18" fill="url(#logo-grad)" />
+                    <path d="M35 30V70M35 30H55C60.5 30 65 34.5 65 40V45C65 50.5 60.5 55 55 55H35M55 55L70 70" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                </svg>
+                <span class="dept-name" style="font-weight: 800; color: #003366; letter-spacing: -0.5px;">ROBOT-SOFT Corp.</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#about" data-i18n="nav-about">기업소개</a></li>
+                    <li><a href="index.html#services" data-i18n="nav-services">핵심솔루션</a></li>
+                    <li><a href="index.html#faculty" data-i18n="nav-faculty">기술진</a></li>
+                    <li><a href="index.html#resources" data-i18n="nav-resources">기술지원</a></li>
+                    <li><a href="index.html#news" data-i18n="nav-news">기업소식</a></li>
+                    <li><a href="board.html" data-i18n="nav-board">포럼</a></li>
+                </ul>
+            </nav>
+            <div class="lang-selector">
+                <span id="lang-ko" class="lang-btn active" style="cursor: pointer;">KOR</span>
+                |
+                <span id="lang-en" class="lang-btn" style="cursor: pointer;">ENG</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="report-hero">
+        <div class="container">
+            <div class="report-breadcrumb" data-i18n="report-breadcrumb">
+                Home / About Us / 기업성장실적 / 경쟁력
+            </div>
+            <div class="report-title-section">
+                <h1 data-i18n="report-title">경쟁력</h1>
+            </div>
+        </div>
+
+        <div class="report-visual-card">
+            <div class="container">
+                <div class="visual-content">
+                    <div class="visual-left">
+                        <h2 data-i18n="report-visual-title">한 눈에 보기</h2>
+                        <p data-i18n="report-visual-desc">글로벌 No.1 로봇 소프트웨어 플랫폼 기업 ROBOT-SOFT</p>
+                        
+                        <div class="total-capacity">
+                            <span class="capacity-label" data-i18n="total-cap-label">총 시스템 통합 누적량</span>
+                            <div class="capacity-value" style="color: #a288ff;"><span class="count-up" data-target="5200">0</span> <span class="capacity-unit">Units +</span></div>
+                        </div>
+
+                        <div class="sub-capacity-grid">
+                            <div class="sub-capacity-item">
+                                <span class="sub-label">Mobile Robots</span>
+                                <span class="sub-value"><span class="count-up" data-target="1520">0</span> U</span>
+                            </div>
+                            <div class="sub-capacity-item">
+                                <span class="sub-label">Co-Robots</span>
+                                <span class="sub-value"><span class="count-up" data-target="2100">0</span> U</span>
+                            </div>
+                            <div class="sub-capacity-item">
+                                <span class="sub-label">Industrial Arms</span>
+                                <span class="sub-value"><span class="count-up" data-target="1280">0</span> U</span>
+                            </div>
+                            <div class="sub-capacity-item">
+                                <span class="sub-label">Special Purpose</span>
+                                <span class="sub-value"><span class="count-up" data-target="300">0</span> U</span>
+                            </div>
+                        </div>
+
+                        <div class="facility-link" style="margin-top: 3rem;">
+                            <a href="#" style="color: #fff; text-decoration: none; border: 1px solid rgba(255,255,255,0.4); padding: 0.8rem 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;" data-i18n="control-center-link">
+                                스마트 팩토리 통합 관제 센터 확인하기 
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="visual-right">
+                        <div class="stat-box">
+                            <span class="stat-box-label" data-i18n="stat-global-clients">글로벌 고객사</span>
+                            <div class="stat-box-value"><span class="count-up" data-target="210">0</span>+</div>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-box-label" data-i18n="stat-engineers">전문 엔지니어</span>
+                            <div class="stat-box-value"><span class="count-up" data-target="850">0</span>+</div>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-box-label" data-i18n="stat-patents">기술 특허 보유</span>
+                            <div class="stat-box-value"><span class="count-up" data-target="440">0</span>+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="chart-section">
+        <div class="container">
+            <div class="chart-header">
+                <h2 class="chart-title" data-i18n="chart-title">글로벌 기술 인증 및 보급 현황</h2>
+                <p class="chart-desc" data-i18n="chart-desc">ROBOT-SOFT는 독보적인 기술력을 바탕으로 전 세계 시장에서 글로벌 규제 승인 및 플랫폼 보급을 가속화하고 있습니다.</p>
+            </div>
+
+            <div class="chart-legend">
+                <div class="legend-item"><div class="legend-color" style="background:#9b6bff"></div> Others (Global)</div>
+                <div class="legend-item"><div class="legend-color" style="background:#5a4bfa"></div> US / EU</div>
+                <div class="legend-item"><div class="legend-color" style="background:#1a0dab"></div> Domestic (KR)</div>
+            </div>
+
+            <div class="chart-outer-container">
+                <div class="y-axis-area">
+                    <div class="y-axis-label">Cumulative Global Technical Approvals</div>
+                    <div class="y-axis-numbers">
+                        <span>450</span><span>400</span><span>350</span><span>300</span><span>250</span><span>200</span><span>150</span><span>100</span><span>50</span><span>0</span>
+                    </div>
+                </div>
+                <div class="bar-chart-container">
+                    <div class="bar-wrapper">
+                        <div class="total-label">1</div>
+                        <div class="bar" style="height: 2px;"><div class="segment seg-1" style="height: 100%;"></div></div>
+                        <div class="bar-year">2015</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="total-label">7</div>
+                        <div class="bar" style="height: 14px;">
+                            <div class="segment seg-1" style="height: 43%;"></div>
+                            <div class="segment seg-2" style="height: 57%;"></div>
+                        </div>
+                        <div class="bar-year">2016</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="total-label">12</div>
+                        <div class="bar" style="height: 24px;">
+                            <div class="segment seg-1" style="height: 25%;"></div>
+                            <div class="segment seg-2" style="height: 42%;"></div>
+                            <div class="segment seg-3" style="height: 33%;"></div>
+                        </div>
+                        <div class="bar-year">2017</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="total-label">22</div>
+                        <div class="bar" style="height: 44px;">
+                            <div class="segment seg-1" style="height: 32%;"></div>
+                            <div class="segment seg-2" style="height: 32%;"></div>
+                            <div class="segment seg-3" style="height: 36%;"></div>
+                        </div>
+                        <div class="bar-year">2018</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="total-label">58</div>
+                        <div class="bar" style="height: 110px;">
+                            <div class="segment seg-1" style="height: 64%;"></div>
+                            <div class="segment seg-2" style="height: 20%;"></div>
+                            <div class="segment seg-3" style="height: 16%;"></div>
+                        </div>
+                        <div class="bar-year">2019</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="total-label">92</div>
+                        <div class="bar" style="height: 180px;">
+                            <div class="segment seg-1" style="height: 68%;">63</div>
+                            <div class="segment seg-2" style="height: 16%;"></div>
+                            <div class="segment seg-3" style="height: 16%;"></div>
+                        </div>
+                        <div class="bar-year">2020</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="total-label">139</div>
+                        <div class="bar" style="height: 260px;">
+                            <div class="segment seg-1" style="height: 75%;">104</div>
+                            <div class="segment seg-2" style="height: 14%;">19</div>
+                            <div class="segment seg-3" style="height: 11%;">16</div>
+                        </div>
+                        <div class="bar-year">2021</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="total-label">212</div>
+                        <div class="bar" style="height: 320px;">
+                            <div class="segment seg-1" style="height: 77%;">164</div>
+                            <div class="segment seg-2" style="height: 12%;">25</div>
+                            <div class="segment seg-3" style="height: 11%;">23</div>
+                        </div>
+                        <div class="bar-year">2022</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="total-label">279</div>
+                        <div class="bar" style="height: 350px;">
+                            <div class="segment seg-1" style="height: 78%;">219</div>
+                            <div class="segment seg-2" style="height: 11%;">31</div>
+                            <div class="segment seg-3" style="height: 11%;">29</div>
+                        </div>
+                        <div class="bar-year">2023</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="total-label">348</div>
+                        <div class="bar" style="height: 375px;">
+                            <div class="segment seg-1" style="height: 78%;">272</div>
+                            <div class="segment seg-2" style="height: 10%;">36</div>
+                            <div class="segment seg-3" style="height: 12%;">40</div>
+                        </div>
+                        <div class="bar-year">2024</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="total-label">428</div>
+                        <div class="bar" style="height: 390px;">
+                            <div class="segment seg-1" style="height: 76%;">327</div>
+                            <div class="segment seg-2" style="height: 12%;">49</div>
+                            <div class="segment seg-3" style="height: 12%;">52</div>
+                        </div>
+                        <div class="bar-year">2025</div>
+                    </div>
+                    <div class="bar-wrapper">
+                        <div class="total-label">444</div>
+                        <div class="bar" style="height: 400px;">
+                            <div class="segment seg-1" style="height: 75%;">331</div>
+                            <div class="segment seg-2" style="height: 12%;">54</div>
+                            <div class="segment seg-3" style="height: 13%;">59</div>
+                        </div>
+                        <div class="bar-year">2026</div>
+                    </div>
+                </div>
+            </div>
+            <div class="x-axis-title">Year of Approval</div>
+
+            <div class="table-view-container">
+                <div class="data-table-header">
+                    <div class="table-title" data-i18n="table-label-approvals">승인 수</div>
+                    <div class="table-years">
+                        <div class="year-col">2015년</div>
+                        <div class="year-col">2016년</div>
+                        <div class="year-col">2017년</div>
+                        <div class="year-col">2018년</div>
+                        <div class="year-col">2019년</div>
+                        <div class="year-col">2020년</div>
+                        <div class="year-col">2021년</div>
+                        <div class="year-col">2022년</div>
+                        <div class="year-col">2023년</div>
+                        <div class="year-col">2024년</div>
+                        <div class="year-col">2025년</div>
+                        <div class="year-col">2026년</div>
+                    </div>
+                </div>
+
+                <div class="data-row">
+                    <div class="row-label">FDA</div>
+                    <div class="row-values">
+                        <div class="val-col">1</div>
+                        <div class="val-col">3</div>
+                        <div class="val-col">4</div>
+                        <div class="val-col">8</div>
+                        <div class="val-col">9</div>
+                        <div class="val-col">14</div>
+                        <div class="val-col">16</div>
+                        <div class="val-col">23</div>
+                        <div class="val-col">29</div>
+                        <div class="val-col">40</div>
+                        <div class="val-col">52</div>
+                        <div class="val-col">59</div>
+                    </div>
+                </div>
+
+                <div class="data-row">
+                    <div class="row-label">EMA</div>
+                    <div class="row-values">
+                        <div class="val-col"></div>
+                        <div class="val-col">4</div>
+                        <div class="val-col">5</div>
+                        <div class="val-col">7</div>
+                        <div class="val-col">12</div>
+                        <div class="val-col">15</div>
+                        <div class="val-col">19</div>
+                        <div class="val-col">25</div>
+                        <div class="val-col">31</div>
+                        <div class="val-col">36</div>
+                        <div class="val-col">49</div>
+                        <div class="val-col">54</div>
+                    </div>
+                </div>
+
+                <div class="data-row">
+                    <div class="row-label" style="font-size: 1.05rem;">Others<br>(PMDA, MFDS, and etc.)</div>
+                    <div class="row-values">
+                        <div class="val-col"></div>
+                        <div class="val-col"></div>
+                        <div class="val-col">3</div>
+                        <div class="val-col">7</div>
+                        <div class="val-col">37</div>
+                        <div class="val-col">63</div>
+                        <div class="val-col">104</div>
+                        <div class="val-col">164</div>
+                        <div class="val-col">219</div>
+                        <div class="val-col">272</div>
+                        <div class="val-col">327</div>
+                        <div class="val-col">331</div>
+                    </div>
+                </div>
+
+                <div class="data-row total-row">
+                    <div class="row-label" data-i18n="table-label-cumulative">누적 승인 총 수</div>
+                    <div class="row-values">
+                        <div class="val-col">1</div>
+                        <div class="val-col">7</div>
+                        <div class="val-col">12</div>
+                        <div class="val-col">22</div>
+                        <div class="val-col">58</div>
+                        <div class="val-col">92</div>
+                        <div class="val-col">139</div>
+                        <div class="val-col">212</div>
+                        <div class="val-col">279</div>
+                        <div class="val-col">348</div>
+                        <div class="val-col">428</div>
+                        <div class="val-col">444</div>
+                    </div>
+                </div>
+
+                <div class="logo-footer">
+                    <!-- Placeholder logos matching the request -->
+                    <div style="font-weight: 900; font-size: 1.3rem; color: #0047bb; padding: 0 10px; background: #eee; border-radius: 4px;">FDA</div>
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <svg width="24" height="24" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#003366"/></svg>
+                        <span style="font-size: 0.7rem; font-weight: 700; color: #666; line-height: 1;">EUROPEAN MEDICINES AGENCY<br>SCIENCE MEDICINES HEALTH</span>
+                    </div>
+                    <div style="font-weight: 900; font-size: 1.2rem; color: #003366;">pmda</div>
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <span style="color: red; font-size: 1.2rem;">🍁</span>
+                        <span style="font-size: 0.7rem; font-weight: 700; color: #333; line-height: 1;">Public Health<br>Agency of Canada</span>
+                    </div>
+                    <div style="font-weight: 800; font-size: 1.1rem; color: #333;">Cofepris</div>
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <svg width="24" height="24" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="red" fill="none" stroke-width="5"/></svg>
+                        <span style="font-size: 0.6rem; font-weight: 700; color: #666; line-height: 1;">REPUBLIC OF TURKEY<br>MINISTRY OF HEALTH</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <div style="width: 24px; height: 16px; background: #00a859; border-radius: 2px;"></div>
+                        <span style="font-weight: 800; letter-spacing: 1px; color: #00a859;">ANVISA</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <div style="width: 20px; height: 20px; border-radius: 50%; background: linear-gradient(#005ba6, #e71d32);"></div>
+                        <span style="font-size: 0.6rem; font-weight: 700; color: #333; line-height: 1;">Ministry of Food<br>and Drug Safety</span>
+                    </div>
+                    <div style="font-weight: 700; font-size: 1.2rem; color: #333; font-family: serif;">GXP</div>
+                </div>
+            </div>
+
+            <button class="table-btn" data-i18n="chart-btn-switch">차트 표로 전환하여 보기</button>
+        </div>
+    </section>
+
+    <footer style="background:#f8f9fa; padding: 4rem 0; text-align:center; border-top: 1px solid #eee;">
+        <p data-i18n="footer-copyright">&copy; 2026 ROBOT-SOFT Corp. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth transition for bars
+        function animateBars() {
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => {
+                const h = bar.style.height;
+                bar.style.height = '0';
+                setTimeout(() => {
+                    bar.style.height = h;
+                }, 200);
+            });
+        }
+
+        // Count-up animation
+        function animateNumbers() {
+            const counters = document.querySelectorAll('.count-up');
+            const duration = 2000; // 2 seconds
+
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const startTime = performance.now();
+                
+                const updateCount = (currentTime) => {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Easing function (easeOutExpo)
+                    const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                    
+                    const currentCount = Math.floor(easeProgress * target);
+                    counter.innerText = currentCount.toLocaleString();
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target.toLocaleString();
+                    }
+                };
+                
+                requestAnimationFrame(updateCount);
+            });
+        }
+
+        // Intersection Observer to trigger animations
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('report-visual-card')) {
+                        animateNumbers();
+                    } else if (entry.target.classList.contains('chart-section')) {
+                        animateBars();
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const visualCard = document.querySelector('.report-visual-card');
+            const chartSection = document.querySelector('.chart-section');
+            
+            if (visualCard) observer.observe(visualCard);
+            if (chartSection) observer.observe(chartSection);
+
+            // Toggle logic for Chart/Table
+            const tableBtn = document.querySelector('.table-btn');
+            if (tableBtn && chartSection) {
+                tableBtn.addEventListener('click', () => {
+                    chartSection.classList.toggle('showing-table');
+                    
+                    const isTable = chartSection.classList.contains('showing-table');
+                    const lang = localStorage.getItem('site-lang') || 'ko';
+                    
+                    if (isTable) {
+                        tableBtn.innerText = lang === 'ko' ? "차트로 돌아가기" : "Back to Chart View";
+                        tableBtn.setAttribute('data-i18n', 'chart-btn-switch-back');
+                    } else {
+                        tableBtn.innerText = lang === 'ko' ? "차트 표로 전환하여 보기" : "Switch to Table View";
+                        tableBtn.setAttribute('data-i18n', 'chart-btn-switch');
+                        // Re-animate bars when switching back
+                        animateBars();
+                    }
+                });
+            }
+        });
+    </script>
+    <script src="translations.js"></script>
+</body>
+</html>

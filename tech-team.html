@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기술진 소개 | ROBOT-SOFT Corp.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { background: #fff; color: #111; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .hero-section { padding: 120px 0 80px; text-align: center; background: linear-gradient(135deg, #f8faff 0%, #ffffff 100%); }
+        .hero-section h1 { font-size: 3.5rem; font-weight: 900; letter-spacing: -2px; margin-bottom: 1.5rem; }
+        .hero-section p { font-size: 1.3rem; color: #555; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+
+        .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 80px 0; }
+        .team-card { border-radius: 24px; overflow: hidden; background: #fff; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease; border: 1px solid #eee; }
+        .team-card:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(0,71,187,0.1); }
+        
+        .member-img-wrap { width: 100%; height: 400px; overflow: hidden; position: relative; }
+        .member-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .team-card:hover .member-img-wrap img { transform: scale(1.1); }
+
+        .member-info { padding: 30px; text-align: center; }
+        .member-role { color: #0047bb; font-weight: 800; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 10px; display: block; }
+        .member-name { font-size: 1.6rem; font-weight: 800; margin-bottom: 15px; }
+        .member-bio { font-size: 0.95rem; color: #666; line-height: 1.6; }
+
+        .expertise-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 20px; }
+        .tag { padding: 5px 12px; background: #f0f4ff; color: #0047bb; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
+
+        /* Tech support section */
+        .tech-culture { background: #001c4a; color: #fff; padding: 100px 0; border-radius: 40px; margin: 60px 20px; position: relative; overflow: hidden; }
+        .tech-culture h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 40px; text-align: center; }
+        .culture-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; padding: 0 60px; }
+        .culture-item h4 { font-size: 1.3rem; margin-bottom: 15px; color: #0088ff; }
+        .culture-item p { opacity: 0.7; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-container">
+            <div class="search-bar-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" width="30" height="30"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="search-input" placeholder="Search..." data-i18n-placeholder="search-placeholder">
+                <button class="search-close" id="search-close-btn">&times;</button>
+            </div>
+            <div class="search-quick-links">
+                <p class="quick-links-title" data-i18n="quick-links-title">Quick Links</p>
+                <ul>
+                    <li><a href="index.html#services" data-i18n="quick-link-1">??Core Solutions</a></li>
+                    <li><a href="newsroom.html" data-i18n="quick-link-2">??Latest News</a></li>
+                    <li><a href="board.html" data-i18n="quick-link-3">??Technology Forum</a></li>
+                    <li><a href="contact.html" data-i18n="quick-link-4">??Contact Experts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <header class="main-header" style="position: sticky; top: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #eee;">
+        <div class="header-container">
+            <div class="logo-area" onclick="location.href='index.html'">
+                <svg width="36" height="36" viewBox="0 0 100 100" class="logo-icon">
+                    <rect x="5" y="5" width="90" height="90" rx="18" fill="#0047bb" />
+                    <text x="50" y="65" font-family="Inter" font-weight="900" font-size="50" fill="#fff" text-anchor="middle">R</text>
+                </svg>
+                <span class="dept-name">ROBOT-SOFT Corp.</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#about" data-i18n="nav-about">기업소개</a></li>
+                    <li><a href="index.html#services" data-i18n="nav-services">솔루션</a></li>
+                    <li><a href="tech-team.html" class="active" data-i18n="nav-faculty">기술진</a></li>
+                    <li><a href="newsroom.html" data-i18n="nav-news">기업소식</a></li>
+                </ul>
+            </nav>
+                        <div class="header-right">
+                <div class="lang-selector">
+                    <span id="lang-ko" class="lang-btn active" style="cursor: pointer;">KOR</span>
+                    |
+                    <span id="lang-en" class="lang-btn" style="cursor: pointer;">ENG</span>
+                </div>
+                <button class="search-btn"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
+                <a href="contact.html" class="btn-contact" data-i18n="contact-us">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-section">
+        <div class="container">
+            <span class="member-role" style="font-size: 1.2rem; margin-bottom: 10px;" data-i18n="tech-hero-role">LEADERSHIP & TALENTS</span>
+            <h1 data-i18n="tech-hero-title">The Minds Behind the Robots</h1>
+            <p data-i18n="tech-hero-desc">로봇소프트 코퍼레이션은 혁신적인 비전을 가진 리더십과 전 세계 최고의 엔지니어들이 함께 미래를 증명하고 있습니다.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- CEO Section -->
+        <div style="display: flex; justify-content: center; margin-bottom: 80px;">
+            <div class="team-card" style="max-width: 450px;">
+                <div class="member-img-wrap" style="height: 500px; background: linear-gradient(135deg, #001c4a 0%, #0047bb 100%); display: flex; align-items: center; justify-content: center;">
+                    <svg viewBox="0 0 24 24" width="200" height="200" fill="rgba(255,255,255,0.9)" style="filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+                <div class="member-info">
+                    <span class="member-role">FOUNDER & CEO</span>
+                    <h3 class="member-name" data-i18n="tech-ceo-name">이선우 (Lee Sun-woo)</h3>
+                    <p class="member-bio" data-i18n="tech-ceo-bio">로봇소프트 코퍼레이션의 창업자이자 대표이사. 소프트웨어로 세상을 움직이겠다는 비전 아래, AI 로보틱스 생태계의 혁신을 이끌고 있습니다.</p>
+                    <div class="expertise-tags">
+                        <span class="tag">Visionary Leadership</span>
+                        <span class="tag">Software Innovation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="font-size: 2rem; font-weight: 900; margin-bottom: 40px; text-align: center;" data-i18n="tech-core-title">Core Engineering Team</h2>
+        
+        <div class="team-grid">
+            <!-- Lead Engineer -->
+            <div class="team-card">
+                <div class="member-img-wrap" style="background: linear-gradient(135deg, #eee 0%, #fff 100%); display: flex; align-items: center; justify-content: center;">
+                    <svg viewBox="0 0 24 24" width="160" height="160" fill="#0047bb" style="opacity: 0.8;">
+                        <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity=".1"/>
+                        <circle cx="12" cy="7.5" r="4"/>
+                        <path d="M12 13c-4.42 0-8 2.24-8 5v2h16v-2c0-2.76-3.58-5-8-5z"/>
+                        <path d="M12 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" display="none"/>
+                        <!-- Female silhouette adjustment: slightly different hair/shoulder -->
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        <path d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2m0-2C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" display="none"/>
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v1c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-1c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                </div>
+                <div class="member-info">
+                    <span class="member-role">LEAD ROBOTICS ENGINEER</span>
+                    <h3 class="member-name">Elena Park</h3>
+                    <p class="member-bio" data-i18n="tech-eng1-bio">MIT 로보틱스 랩 출신. 실제 환경에서의 다중 로봇 협업 제어 및 충돌 방지 시스템 설계 분야의 핵심 전문가입니다.</p>
+                    <div class="expertise-tags"><span class="tag">Multi-Robot Coordination</span><span class="tag">Path Planning</span></div>
+                </div>
+            </div>
+
+            <!-- Cloud Architect -->
+            <div class="team-card">
+                <div class="member-img-wrap">
+                    <img src="tech_leader_03_1779330449478.png" alt="Justin Kim">
+                </div>
+                <div class="member-info">
+                    <span class="member-role">CLOUD INFRA ARCHITECT</span>
+                    <h3 class="member-name">Justin Kim</h3>
+                    <p class="member-bio" data-i18n="tech-eng2-bio">AWS 출신 인프라 전문가. 초저지연 로봇 제어를 위한 엣지 컴퓨팅 및 전역 클라우드 제어 망을 설계하고 운영합니다.</p>
+                    <div class="expertise-tags"><span class="tag">Edge Computing</span><span class="tag">Scalable Systems</span></div>
+                </div>
+            </div>
+
+            <!-- Dev 1 -->
+            <div class="team-card">
+                <div class="member-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&q=80&w=800" alt="정소라">
+                </div>
+                <div class="member-info">
+                    <span class="member-role">FULL-STACK DEVELOPER</span>
+                    <h3 class="member-name" data-i18n="tech-eng3-name">정소라 (Sora Jung)</h3>
+                    <p class="member-bio" data-i18n="tech-eng3-bio">로봇 관제 인터페이스 시스템의 사용자 경험을 설계하고 실시간 데이터 시각화 엔진을 개발합니다.</p>
+                    <div class="expertise-tags"><span class="tag">WebSockets</span><span class="tag">Data Viz</span></div>
+                </div>
+            </div>
+
+            <!-- Dev 2 -->
+            <div class="team-card">
+                <div class="member-img-wrap" style="background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                    <svg viewBox="0 0 24 24" width="160" height="160" fill="#555">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+                <div class="member-info">
+                    <span class="member-role">COMPUTER VISION ENGINEER</span>
+                    <h3 class="member-name">Michael Wu</h3>
+                    <p class="member-bio" data-i18n="tech-eng4-bio">객체 인식 및 SLAM 기술 고도화를 통해 로봇의 눈을 담당하는 인식 알고리즘을 연구합니다.</p>
+                    <div class="expertise-tags"><span class="tag">OpenCV</span><span class="tag">PyTorch</span></div>
+                </div>
+            </div>
+            <!-- Dev 3 -->
+            <div class="team-card">
+                <div class="member-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1573166364524-d9dbfd8bbf83?auto=format&fit=crop&q=80&w=800" alt="장지희">
+                </div>
+                <div class="member-info">
+                    <span class="member-role">MOTION CONTROL EXPERT</span>
+                    <h3 class="member-name" data-i18n="tech-eng5-name">장지희 (Chloe Jang)</h3>
+                    <p class="member-bio" data-i18n="tech-eng5-bio">로봇 팔의 정밀 제어 및 협동 로봇의 안전 메커니즘 프로토콜을 담당하고 있습니다.</p>
+                    <div class="expertise-tags"><span class="tag">C++</span><span class="tag">ROS 2</span></div>
+                </div>
+            </div>
+
+            <!-- Dev 4 -->
+            <div class="team-card">
+                <div class="member-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800" alt="Kenji Tanaka">
+                </div>
+                <div class="member-info">
+                    <span class="member-role">SIMULATION SPECIALIST</span>
+                    <h3 class="member-name">Kenji Tanaka</h3>
+                    <p class="member-bio" data-i18n="tech-eng6-bio">디지털 트윈 환경 구축 및 가상 시뮬레이션을 통한 로봇 소프트웨어 검증을 수행합니다.</p>
+                    <div class="expertise-tags"><span class="tag">Digital Twin</span><span class="tag">Unity</span></div>
+                </div>
+            </div>
+
+            <!-- Dev 5 -->
+            <div class="team-card">
+                <div class="member-img-wrap" style="background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                    <svg viewBox="0 0 24 24" width="160" height="160" fill="#555">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                </div>
+                <div class="member-info">
+                    <span class="member-role">BACKEND ENGINEER</span>
+                    <h3 class="member-name" data-i18n="tech-eng7-name">최세준 (Se-jun Choi)</h3>
+                    <p class="member-bio" data-i18n="tech-eng7-bio">수천 대의 로봇에서 발생하는 원격 데이터 로그를 안전하게 처리하는 분산 서버 시스템을 구축합니다.</p>
+                    <div class="expertise-tags"><span class="tag">Go</span><span class="tag">Kubernetes</span></div>
+                </div>
+            </div>
+
+            <!-- Dev 6 -->
+            <div class="team-card">
+                <div class="member-img-wrap" style="background: #fdf2f8; display: flex; align-items: center; justify-content: center;">
+                    <svg viewBox="0 0 24 24" width="160" height="160" fill="#db2777" style="opacity: 0.7;">
+                        <path d="M12 4c2.21 0 4 1.79 4 4s-1.79 4-4 4-4-1.79-4-4 1.79-4 4-4zm0 9c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z" display="none"/>
+                        <circle cx="12" cy="8" r="4"/>
+                        <path d="M12 14c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v1c0 .55.45 1 1 1h14c.55 0 1-.45 1-1v-1c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                </div>
+                <div class="member-info">
+                    <span class="member-role">QA & SAFETY ENGINEER</span>
+                    <h3 class="member-name">Sarah Miller</h3>
+                    <p class="member-bio" data-i18n="tech-eng8-bio">로봇 소프트웨어의 안정성 테스트 및 필드 테스트 시나리오를 설계하여 최상의 품질을 보장합니다.</p>
+                    <div class="expertise-tags"><span class="tag">Testing</span><span class="tag">Fail-safe</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-culture">
+            <h2>Engineering Excellence</h2>
+            <div class="culture-grid">
+                <div class="culture-item">
+                    <h4>Open Innovation</h4>
+                    <p data-i18n="tech-culture-1">우리는 최신 AI 논문을 실무에 즉시 적용하며, 오픈 소스 생태계 기여를 통해 글로벌 기술 표준을 선도합니다.</p>
+                </div>
+                <div class="culture-item">
+                    <h4>Safety First</h4>
+                    <p data-i18n="tech-culture-2">인간과 협업하는 로봇의 핵심은 안전입니다. 하드웨어와 소프트웨어가 결합된 3중 안전 시스템을 고집합니다.</p>
+                </div>
+                <div class="culture-item">
+                    <h4>Data-Driven</h4>
+                    <p data-i18n="tech-culture-3">수만 시간의 시뮬레이션 데이터와 실제 현장 데이터를 정밀 분석하여 로봇의 자율성을 극대화합니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background:#f8f9fa; padding: 4rem 0; text-align:center; border-top: 1px solid #eee;">
+        <p data-i18n="footer-copyright">&copy; 2026 ROBOT-SOFT Corp. All rights reserved.</p>
+    </footer>
+
+
+    <script src="translations.js"></script>
+</body>
+</html>

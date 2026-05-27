@@ -1,0 +1,202 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | 이선우 기술이사</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        .contact-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px;
+            background: #f8fafc;
+        }
+        .contact-container {
+            width: 100%;
+            max-width: 900px;
+            background: #fff;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+            display: flex;
+        }
+        .contact-brand {
+            flex: 1;
+            background: linear-gradient(135deg, #0047bb 0%, #1e36ff 100%);
+            padding: 60px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .contact-brand h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+        }
+        .contact-brand p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+        .contact-details {
+            flex: 1.2;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .detail-item {
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+        .detail-icon {
+            width: 50px;
+            height: 50px;
+            background: #f0f7ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .detail-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #0047bb;
+        }
+        .detail-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+        .detail-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #111;
+        }
+        .back-home {
+            margin-top: 3rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #0047bb;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s ease;
+        }
+        .back-home:hover {
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .contact-container { flex-direction: column; }
+            .contact-brand, .contact-details { padding: 40px; }
+            .contact-brand h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-container">
+            <div class="search-bar-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" width="30" height="30"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="search-input" placeholder="Search..." data-i18n-placeholder="search-placeholder">
+                <button class="search-close" id="search-close-btn">&times;</button>
+            </div>
+            <div class="search-quick-links">
+                <p class="quick-links-title" data-i18n="quick-links-title">Quick Links</p>
+                <ul>
+                    <li><a href="index.html#services" data-i18n="quick-link-1">??Core Solutions</a></li>
+                    <li><a href="newsroom.html" data-i18n="quick-link-2">??Latest News</a></li>
+                    <li><a href="board.html" data-i18n="quick-link-3">??Technology Forum</a></li>
+                    <li><a href="contact.html" data-i18n="quick-link-4">??Contact Experts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <header class="main-header" style="background: rgba(255,255,255,0.9);">
+        <div class="header-container">
+            <div class="logo-area" onclick="location.href='index.html'">
+                <span class="dept-name" style="font-weight: 800; color: #003366; letter-spacing: -0.5px; border:none; padding-left:0;">ROBOT-SOFT Corp.</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#about" data-i18n="nav-about">기업소개</a></li>
+                    <li><a href="index.html#services" data-i18n="nav-services">핵심솔루션</a></li>
+                    <li><a href="index.html#news" data-i18n="nav-news">기업소식</a></li>
+                    <li><a href="board.html" data-i18n="nav-board">포럼</a></li>
+                </ul>
+            </nav>
+            <div class="lang-selector" style="margin-left: 2rem;">
+                <span id="lang-ko" class="lang-btn active" style="cursor: pointer;">KOR</span>
+                |
+                <span id="lang-en" class="lang-btn" style="cursor: pointer;">ENG</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="contact-page">
+        <div class="contact-container">
+            <div class="contact-brand">
+                <h1 data-i18n="contact-title">Let's Connect.</h1>
+                <p data-i18n="contact-desc">로봇소프트 코퍼레이션은 항상 열려있습니다. 기술 문의 및 협업 제안은 언제든 환영합니다.</p>
+                <div style="margin-top: auto; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.2);">
+                    <small>© 2026 이선우 기술이사 (Sunwoo Lee)</small>
+                </div>
+            </div>
+            <div class="contact-details">
+                <div class="detail-item">
+                    <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+                    <div>
+                        <div class="detail-label">Name</div>
+                        <div class="detail-value">이선우 (Lee Sun-woo)</div>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+                    <div>
+                        <div class="detail-label">Email</div>
+                        <div class="detail-value">lsw936402@gmail.com</div>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+                    <div>
+                        <div class="detail-label">Phone</div>
+                        <div class="detail-value">010-4784-1636</div>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+                    <div>
+                        <div class="detail-label">Position</div>
+                        <div class="detail-value">Technical Director @ ROBOT-SOFT Corp.</div>
+                    </div>
+                </div>
+                <a href="index.html" class="back-home" data-i18n="contact-back">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                    홈으로 돌아가기
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background: #001529; color: #fff; padding: 3rem; text-align: center;">
+        <p data-i18n="footer-copyright">&copy; 2026 ROBOT-SOFT Corp. All rights reserved.</p>
+    </footer>
+    <script src="translations.js"></script>
+</body>
+</html>

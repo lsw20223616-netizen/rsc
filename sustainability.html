@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지속가능성 | ROBOT-SOFT Corp.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        .placeholder-section {
+            padding: 120px 0;
+            text-align: center;
+            background: #fff;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .placeholder-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #003366;
+            margin-bottom: 1.5rem;
+        }
+        .placeholder-desc {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+        .back-btn {
+            padding: 1rem 2.5rem;
+            background: #0088ff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: transform 0.3s;
+        }
+        .back-btn:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-container">
+            <div class="search-bar-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" width="30" height="30"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="search-input" placeholder="Search..." data-i18n-placeholder="search-placeholder">
+                <button class="search-close" id="search-close-btn">&times;</button>
+            </div>
+            <div class="search-quick-links">
+                <p class="quick-links-title" data-i18n="quick-links-title">Quick Links</p>
+                <ul>
+                    <li><a href="index.html#services" data-i18n="quick-link-1">??Core Solutions</a></li>
+                    <li><a href="newsroom.html" data-i18n="quick-link-2">??Latest News</a></li>
+                    <li><a href="board.html" data-i18n="quick-link-3">??Technology Forum</a></li>
+                    <li><a href="contact.html" data-i18n="quick-link-4">??Contact Experts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area" onclick="location.href='index.html'">
+                <svg width="36" height="36" viewBox="0 0 100 100" class="logo-icon">
+                    <rect x="5" y="5" width="90" height="90" rx="18" fill="#0088ff" />
+                    <path d="M35 30V70M35 30H55C60.5 30 65 34.5 65 40V45C65 50.5 60.5 55 55 55H35M55 55L70 70" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                </svg>
+                <span class="dept-name">ROBOT-SOFT Corp.</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#about" data-i18n="nav-about">기업소개</a></li>
+                    <li><a href="index.html#services" data-i18n="nav-services">핵심솔루션</a></li>
+                    <li><a href="index.html#news" data-i18n="nav-news">기업소식</a></li>
+                    <li><a href="board.html" data-i18n="nav-board">포럼</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="lang-selector">
+                    <span id="lang-ko" class="lang-btn active" style="cursor: pointer;">KOR</span>
+                    |
+                    <span id="lang-en" class="lang-btn" style="cursor: pointer;">ENG</span>
+                </div>
+                <button class="search-btn"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
+                <a href="contact.html" class="btn-contact" data-i18n="contact-us">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="placeholder-section">
+        <h1 class="placeholder-title" data-i18n="learn-more-3-title">지속가능성</h1>
+        <p class="placeholder-desc" data-i18n="learn-more-3-desc">로봇소프트 코퍼레이션 지속가능경영의 전략, 목표, 성과를 알아보세요.</p>
+        <div style="width: 100px; height: 4px; background: #0088ff; margin-bottom: 3rem;"></div>
+        <p style="color: #999; margin-bottom: 2rem;" data-i18n="sus-preparing">콘텐츠 준비 중입니다.</p>
+        <a href="index.html" class="back-btn" data-i18n="sus-back-main">메인으로 돌아가기</a>
+    </section>
+
+    <footer style="background:#f8f9fa; padding: 4rem 0; text-align:center; border-top: 1px solid #eee;">
+        <p data-i18n="footer-copyright">&copy; 2026 ROBOT-SOFT Corp. All rights reserved.</p>
+    </footer>
+
+    <script src="translations.js"></script>
+</body>
+</html>

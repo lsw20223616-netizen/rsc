@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026년 1분기 사업/영업 보고서 | ROBOT-SOFT Corp.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #fff; color: #333; padding: 40px 0; }
+        .report-wrap { max-width: 1000px; margin: 0 auto; padding: 0 40px; }
+        
+        .biz-header { background: #001c4a; color: #fff; padding: 60px; border-radius: 20px; margin-bottom: 60px; }
+        .biz-header h1 { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; }
+        .biz-header p { font-size: 1.2rem; opacity: 0.8; }
+
+        .biz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .biz-card { background: #f8faff; border-radius: 16px; padding: 30px; border: 1px solid #eef2ff; }
+        .biz-card h3 { font-size: 1.3rem; font-weight: 800; color: #0047bb; margin-bottom: 20px; }
+        
+        .stat-row { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #e0e6f0; padding-bottom: 10px; }
+        .stat-label { font-weight: 500; color: #666; }
+        .stat-val { font-weight: 800; color: #111; font-family: 'Inter'; }
+        .highlight { color: #d60000; }
+
+        .analysis-box { margin-bottom: 60px; line-height: 1.8; }
+        .analysis-box h2 { font-size: 1.8rem; font-weight: 800; border-bottom: 3px solid #111; padding-bottom: 10px; margin-bottom: 30px; }
+        .analysis-box p { margin-bottom: 20px; color: #444; }
+    </style>
+</head>
+<body>
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-container">
+            <div class="search-bar-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" width="30" height="30"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="search-input" placeholder="Search..." data-i18n-placeholder="search-placeholder">
+                <button class="search-close" id="search-close-btn">&times;</button>
+            </div>
+            <div class="search-quick-links">
+                <p class="quick-links-title" data-i18n="quick-links-title">Quick Links</p>
+                <ul>
+                    <li><a href="index.html#services" data-i18n="quick-link-1">??Core Solutions</a></li>
+                    <li><a href="newsroom.html" data-i18n="quick-link-2">??Latest News</a></li>
+                    <li><a href="board.html" data-i18n="quick-link-3">??Technology Forum</a></li>
+                    <li><a href="contact.html" data-i18n="quick-link-4">??Contact Experts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="report-wrap">
+        <header class="biz-header">
+            <p>Investor Relations Report</p>
+            <h1>2026년 1분기 <br>사업/영업 보고서</h1>
+            <p>로봇소프트 코퍼레이션 | 2026.05.15 발행</p>
+        </header>
+
+        <div class="biz-grid">
+            <div class="biz-card">
+                <h3>경영 실적 (YoY)</h3>
+                <div class="stat-row">
+                    <span class="stat-label">매출액</span>
+                    <span class="stat-val">425.8 억원 <span class="highlight">(+32%)</span></span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">영업이익</span>
+                    <span class="stat-val">102.4 억원 <span class="highlight">(+45%)</span></span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">당기순이익</span>
+                    <span class="stat-val">88.2 억원 <span class="highlight">(+28%)</span></span>
+                </div>
+            </div>
+            <div class="biz-card">
+                <h3>주요 사업 지표</h3>
+                <div class="stat-row">
+                    <span class="stat-label">글로벌 파트너십</span>
+                    <span class="stat-val">124 개사</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">자율 로봇 도입 대수</span>
+                    <span class="stat-val">14,200 대</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">R&D 투자 비율</span>
+                    <span class="stat-val">18.5%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-box">
+            <h2>영업 실적 분석</h2>
+            <p>
+                로봇소프트 코퍼레이션의 2026년 1분기 매출액은 전년 동기 대비 32% 성장한 425.8억원을 기록하였습니다. 
+                이는 북미 시장에서의 물류 자율화 소프트웨어 라이선스 공급 확대와 차세대 플랫폼 'RSC Genesis'의 조기 시장 안착에 따른 결과입니다.
+            </p>
+            <p>
+                특히 영업이익률은 24%를 달성하며 전년 동기 대비 6.4%p 상승하였습니다. 
+                플랫폼 중심의 비즈니스 모델 전환이 가속화됨에 따라 수익 구조가 개선되었으며, 운영 최적화 알고리즘 도입을 통한 내부 관리 비용 절감 효과가 가시화되었습니다.
+            </p>
+
+            <h2>2분기 전망 및 전략</h2>
+            <p>
+                다가오는 2분기에는 유럽 시장 거점 확대를 위한 글로벌 테크 컨퍼런스 참가 및 파트너 데모 데이를 예정하고 있습니다. 
+                또한, 생성형 AI를 결합한 로봇 제어 인터페이스 'RSC Chat'의 베타 버전을 공개하여 선도적인 기술 우위를 유지할 계획입니다.
+            </p>
+        </div>
+    </div>
+
+    <script src="translations.js"></script>
+</body>
+</html>

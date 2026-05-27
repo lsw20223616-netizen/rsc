@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026년 1분기 경영실적 발표 | ROBOT-SOFT Corp.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #f0f2f5; color: #333; padding: 40px; }
+        .slide-container { max-width: 1100px; margin: 0 auto; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        
+        .slide-header { background: #0047bb; color: #fff; padding: 40px 60px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .slide-header h1 { font-size: 2.2rem; font-weight: 800; }
+        .slide-header span { opacity: 0.8; font-size: 1.1rem; }
+
+        .slide-content { padding: 60px; }
+        .highlight-box { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 50px; }
+        .h-item { padding: 30px; background: #f8fbff; border-radius: 12px; border: 1px solid #eef2ff; }
+        .h-label { font-size: 0.9rem; color: #666; margin-bottom: 15px; display: block; font-weight: 600; }
+        .h-val { font-size: 2rem; font-weight: 900; color: #111; }
+        .h-sub { font-size: 0.9rem; color: #d60000; font-weight: 700; margin-left: 5px; }
+
+        .chart-section { display: flex; gap: 50px; align-items: flex-end; margin-bottom: 50px; border-bottom: 1px solid #eee; padding-bottom: 50px; }
+        .chart-box { flex: 1; }
+        .chart-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 30px; }
+        
+        /* Simple CSS Bar Chart */
+        .bar-container { display: flex; align-items: flex-end; gap: 20px; height: 200px; padding: 20px 0; border-bottom: 2px solid #333; }
+        .bar { flex: 1; background: #0047bb; position: relative; border-radius: 4px 4px 0 0; transition: height 1s; }
+        .bar-label { position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); font-size: 0.85rem; font-weight: 600; width: 100%; text-align: center; }
+        .bar-val { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 0.85rem; font-weight: 800; }
+
+        .analysis-text { flex: 1; }
+        .analysis-text h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 20px; color: #0047bb; }
+        .analysis-text p { line-height: 1.7; color: #555; }
+    </style>
+</head>
+<body>
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-container">
+            <div class="search-bar-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" width="30" height="30"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="search-input" placeholder="Search..." data-i18n-placeholder="search-placeholder">
+                <button class="search-close" id="search-close-btn">&times;</button>
+            </div>
+            <div class="search-quick-links">
+                <p class="quick-links-title" data-i18n="quick-links-title">Quick Links</p>
+                <ul>
+                    <li><a href="index.html#services" data-i18n="quick-link-1">??Core Solutions</a></li>
+                    <li><a href="newsroom.html" data-i18n="quick-link-2">??Latest News</a></li>
+                    <li><a href="board.html" data-i18n="quick-link-3">??Technology Forum</a></li>
+                    <li><a href="contact.html" data-i18n="quick-link-4">??Contact Experts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="slide-container">
+        <header class="slide-header">
+            <h1 data-i18n="er-title">2026년 1분기 경영실적 발표</h1>
+            <span>ROBOT-SOFT Corp. IR Team</span>
+        </header>
+
+        <div class="slide-content">
+            <div class="highlight-box">
+                <div class="h-item">
+                    <span class="h-label">매출액 (Revenue)</span>
+                    <div class="h-val">425.8억 <span class="h-sub">▲ 32%</span></div>
+                </div>
+                <div class="h-item">
+                    <span class="h-label">영업이익 (OP)</span>
+                    <div class="h-val">102.4억 <span class="h-sub">▲ 45%</span></div>
+                </div>
+                <div class="h-item">
+                    <span class="h-label">영업이익률 (OP %)</span>
+                    <div class="h-val">24.1% <span class="h-sub">▲ 6.4%p</span></div>
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <div class="chart-box">
+                    <div class="chart-title">분기별 매출 추이 (억원)</div>
+                    <div class="bar-container">
+                        <div class="bar" style="height: 60%;"><span class="bar-val">285</span><span class="bar-label">'25.1Q</span></div>
+                        <div class="bar" style="height: 70%;"><span class="bar-val">322</span><span class="bar-label">'25.2Q</span></div>
+                        <div class="bar" style="height: 75%;"><span class="bar-val">348</span><span class="bar-label">'25.3Q</span></div>
+                        <div class="bar" style="height: 85%;"><span class="bar-val">398</span><span class="bar-label">'25.4Q</span></div>
+                        <div class="bar" style="height: 100%; background: #d60000;"><span class="bar-val">426</span><span class="bar-label">'26.1Q</span></div>
+                    </div>
+                </div>
+                <div class="analysis-text">
+                    <h3>실적 요약 및 분석</h3>
+                    <p>
+                        당분기 매출은 북미 시장 자율 주행 로봇(AMR) 시범 사업의 성공적 종료와 본 계약 전환에 힘입어 전년 동기 대비 큰 폭으로 성장하였습니다.
+                    </p>
+                    <p>
+                        특히 수익성이 높은 클라우드 기반 관제 플랫폼 서비스 매출 비중이 기존 12%에서 25%로 확대되면서 영업이익률이 역대 최고치를 경신하였습니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="future-view">
+                <h3 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 20px;">향후 사업 계획</h3>
+                <ul style="line-height: 2; color: #444; font-weight: 500;">
+                    <li data-i18n="er-plan-1">유럽 최대 물류 허브(Rotterdam) 내 RSC Genesis 플랫폼 2단계 구축 착수</li>
+                    <li>생성형 AI 결합 'RSC Global Brain' 고도화를 위한 R&D 투자 확대</li>
+                    <li data-i18n="er-plan-3">주주 가치 제고를 위한 자사주 매입 및 분기 배당 검토 중</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="translations.js"></script>
+</body>
+</html>

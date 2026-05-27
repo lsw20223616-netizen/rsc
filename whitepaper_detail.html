@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기술 백서 | ROBOT-SOFT Corp.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { background: #f4f6f9; color: #222; font-family: 'Noto Sans KR', sans-serif; }
+        .whitepaper-paper { background: #fff; max-width: 1000px; margin: 60px auto; padding: 100px 80px; box-shadow: 0 40px 100px rgba(0,0,0,0.1); border-radius: 4px; line-height: 1.8; position: relative; }
+        
+        .wp-header { border-bottom: 2px solid #0047bb; padding-bottom: 40px; margin-bottom: 60px; }
+        .wp-logo { display: flex; align-items: center; gap: 15px; margin-bottom: 40px; }
+        .wp-logo svg { fill: #0047bb; }
+        .wp-tag { color: #0088ff; font-weight: 800; font-size: 0.9rem; letter-spacing: 2px; }
+        .wp-title { font-size: 3rem; font-weight: 900; line-height: 1.2; margin: 20px 0; letter-spacing: -2px; }
+        .wp-meta { font-size: 1.1rem; color: #777; font-weight: 500; }
+
+        .wp-section { margin-bottom: 80px; }
+        .wp-section h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 30px; display: flex; align-items: center; }
+        .wp-section h2::before { content: ''; width: 30px; height: 4px; background: #0047bb; margin-right: 15px; display: inline-block; }
+        .wp-section p { font-size: 1.1rem; color: #444; margin-bottom: 25px; text-align: justify; }
+
+        .image-placeholder { width: 100%; height: 400px; background: #f8faff; border-radius: 12px; margin: 40px 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .image-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin: 40px 0; }
+        .feature-item { padding: 30px; background: #f8faff; border-left: 4px solid #0047bb; border-radius: 4px; }
+        .feature-item h4 { font-weight: 800; margin-bottom: 10px; color: #111; }
+        .feature-item p { font-size: 0.95rem; margin-bottom: 0; color: #666; }
+
+        .print-btn { position: fixed; bottom: 40px; right: 40px; background: #0047bb; color: #fff; padding: 15px 30px; border-radius: 50px; font-weight: 700; border: none; box-shadow: 0 10px 20px rgba(0,71,187,0.3); cursor: pointer; display: flex; align-items: center; gap: 10px; transition: transform 0.3s ease; }
+        .print-btn:hover { transform: translateY(-5px); }
+
+        @media print { .print-btn, header, .breadcrumbs { display: none; } .whitepaper-paper { margin: 0; padding: 0; box-shadow: none; width: 100%; } }
+    </style>
+</head>
+<body>
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-container">
+            <div class="search-bar-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" width="30" height="30"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="search-input" placeholder="Search..." data-i18n-placeholder="search-placeholder">
+                <button class="search-close" id="search-close-btn">&times;</button>
+            </div>
+            <div class="search-quick-links">
+                <p class="quick-links-title" data-i18n="quick-links-title">Quick Links</p>
+                <ul>
+                    <li><a href="index.html#services" data-i18n="quick-link-1">??Core Solutions</a></li>
+                    <li><a href="newsroom.html" data-i18n="quick-link-2">??Latest News</a></li>
+                    <li><a href="board.html" data-i18n="quick-link-3">??Technology Forum</a></li>
+                    <li><a href="contact.html" data-i18n="quick-link-4">??Contact Experts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <header class="main-header" style="background:#fff; border-bottom: 1px solid #eee;">
+        <div class="header-container">
+            <div class="logo-area" onclick="location.href='index.html'" style="cursor: pointer;">
+                <svg width="36" height="36" viewBox="0 0 100 100">
+                    <rect x="5" y="5" width="90" height="90" rx="18" fill="#0047bb" />
+                    <text x="50" y="65" font-family="Inter" font-weight="900" font-size="50" fill="#fff" text-anchor="middle">R</text>
+                </svg>
+                <span class="dept-name">ROBOT-SOFT Corp.</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" data-i18n="nav-home">홈</a></li>
+                    <li><a href="resources.html" data-i18n="nav-resources">자료실</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="lang-selector">
+                    <span id="lang-ko" class="lang-btn active" style="cursor: pointer;">KOR</span>
+                    |
+                    <span id="lang-en" class="lang-btn" style="cursor: pointer;">ENG</span>
+                </div>
+                <button class="search-btn"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
+                <a href="contact.html" class="btn-contact" data-i18n="contact-us">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <article class="whitepaper-paper">
+        <div class="wp-header">
+            <div class="wp-logo">
+                <svg width="40" height="40" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" /><text x="50" y="65" font-family="Inter" font-weight="900" font-size="45" fill="#fff" text-anchor="middle">R</text></svg>
+                <span style="font-weight: 800; font-size: 1.2rem;" data-i18n="wp-lab">ROBOT-SOFT INNOVATION LAB</span>
+            </div>
+            <span class="wp-tag" data-i18n="wp-tag">CORE TECHNOLOGY WHITE PAPER</span>
+            <h1 class="wp-title" data-i18n="wp-title">스마트 팩토리 구축 및<br>지능형 로봇 제어 솔루션 가이드</h1>
+            <div class="wp-meta" data-i18n="wp-meta">제조 혁신 본부 / AI 로보틱스 팀 | 2026년 5월 발행</div>
+        </div>
+
+        <section class="wp-section">
+            <h2 data-i18n="wp-sec-1-title">Executive Summary</h2>
+            <p data-i18n="wp-sec-1-desc">본 백서는 4차 산업혁명의 핵심인 지능형 자동화 공정 구축을 위한 로봇소프트 코퍼레이션의 독자적인 기술 프레임워크를 다룹니다. 기존 하드웨어 중심의 자동화에서 소프트웨어 정의 로보틱스(Software-Defined Robotics)로의 전환을 통해 생산 효율성을 300% 이상 증대시킨 실제 사례와 아키텍처를 상세히 공개합니다.</p>
+            <div class="image-placeholder">
+                <img src="robot_lab_engineer_1779327887594.png" alt="Factory Insight">
+            </div>
+        </section>
+
+        <section class="wp-section">
+            <h2 data-i18n="wp-sec-2-title">Key Architecture: RSC Brain</h2>
+            <p data-i18n="wp-sec-2-desc">로봇소프트 코퍼레이션의 핵심 엔진인 'RSC Brain'은 딥러닝 기반의 인지 알고리즘과 초저지연 연동 기술이 집약된 플랫폼입니다. 수만 개의 센서 데이터를 1ms 이내에 처리하여 로봇의 움직임을 최적화합니다.</p>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4 data-i18n="wp-feat-1-title">Autonomous Path Planning</h4>
+                    <p data-i18n="wp-feat-1-desc">정적인 경로 설정을 넘어, 현장의 장애물과 실시간 환경 변화에 즉각 대응하는 동적 경로 생성 알고리즘을 지원합니다.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 data-i18n="wp-feat-2-title">Multi-Robot Coordination</h4>
+                    <p data-i18n="wp-feat-2-desc">수백 대의 로봇이 서로 충돌 없이 협업할 수 있도록 하는 군집 제어(Swarm Control) 기술을 탑재하였습니다.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 data-i18n="wp-feat-3-title">Predictive Maintenance</h4>
+                    <p data-i18n="wp-feat-3-desc">AI가 부품의 마모도를 예측하여 고장 전 정비를 제안함으로써 다운타임을 제로에 가깝게 유지합니다.</p>
+                </div>
+                <div class="feature-item">
+                    <h4 data-i18n="wp-feat-4-title">Edge Computing Mesh</h4>
+                    <p data-i18n="wp-feat-4-desc">중앙 서버 의존도를 낮춘 분산 처리 방식을 통해 전력 차단 시에도 자율적인 안전 정지가 가능합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="wp-section">
+            <h2 data-i18n="wp-sec-3-title">Security & Safety Protocol</h2>
+            <p data-i18n="wp-sec-3-desc1">인간과 로봇이 공존하는 현장에서 안전은 최우선 과제입니다. 로봇소프트는 하드웨어와 소프트웨어를 연동한 3중 안전 시스템(Triple-Safe)을 통해 예기치 못한 모든 상황에서 완벽한 차단을 보장합니다.</p>
+            <div class="image-placeholder">
+                <img src="robot_ai_brain_viz_1779327818407.png" alt="Safety Visualization">
+            </div>
+            <p data-i18n="wp-sec-3-desc2">ISO 26262 및 IEC 61508 등 국제 안전 표준을 준수하며, 모든 데이터는 강력한 엔드투엔드 암호화 기술로 보호되어 외부 침입으로부터 자산을 안전하게 지킵니다.</p>
+        </section>
+
+        <section class="wp-section">
+            <h2 data-i18n="wp-sec-4-title">Conclusion</h2>
+            <p data-i18n="wp-sec-4-desc">로봇소프트 코퍼레이션은 단순한 로봇 제조사를 넘어, 기술로 고객의 미래를 그리는 파트너입니다. 본 솔루션을 통해 더 많은 기업이 디지털 전환의 혜택을 누리고 글로벌 시장에서의 경쟁력을 강화할 수 있기를 기대합니다.</p>
+        </section>
+
+        <div style="text-align: center; color: #ccc; font-size: 0.9rem; margin-top: 100px;">
+            &copy; 2026 ROBOT-SOFT Corp. All rights reserved.
+        </div>
+    </article>
+
+    <button class="print-btn" onclick="window.print()">
+        <svg fill="#fff" viewBox="0 0 24 24" width="20" height="20"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+        PDF로 저장하기
+    </button>
+
+    <script src="translations.js"></script>
+</body>
+</html>
