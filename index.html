@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>경쟁력 | Robot-Soft-Corp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+<body>
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-container">
+            <div class="search-bar-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" width="30" height="30"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="search-input" placeholder="Search..." data-i18n-placeholder="search-placeholder">
+                <button class="search-close" id="search-close-btn">&times;</button>
+            </div>
+            <div class="search-quick-links">
+                <p class="quick-links-title" data-i18n="quick-links-title">Quick Links</p>
+                <ul>
+                    <li><a href="#services" data-i18n="quick-link-1">→ Core Solutions</a></li>
+                    <li><a href="#news" data-i18n="quick-link-2">→ Latest News</a></li>
+                    <li><a href="board.html" data-i18n="quick-link-3">→ Technology Forum</a></li>
+                    <li><a href="contact.html" data-i18n="quick-link-4">→ Contact Experts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <svg width="36" height="36" viewBox="0 0 100 100" class="logo-icon" style="margin-right: 12px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">
+                    <defs>
+                        <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#0088ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#003366;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="5" y="5" width="90" height="90" rx="18" fill="url(#logo-grad)" />
+                    <path d="M35 30V70M35 30H55C60.5 30 65 34.5 65 40V45C65 50.5 60.5 55 55 55H35M55 55L70 70" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                </svg>
+                <span class="dept-name" style="font-weight: 800; color: #003366; letter-spacing: -0.5px;">ROBOT-SOFT Corp.</span>
+            </div>
+            
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="#about" data-i18n="nav-about">기업소개</a></li>
+                    <li><a href="index.html#services" data-i18n="nav-services">핵심솔루션</a></li>
+                    <li><a href="tech-team.html" data-i18n="nav-faculty">기술진</a></li>
+                    <li><a href="index.html#resources" data-i18n="nav-resources">기술지원</a></li>
+                    <li><a href="newsroom.html" data-i18n="nav-news">기업소식</a></li>
+                    <li><a href="board.html" data-i18n="nav-board">포럼</a></li>
+                    <li><a href="forum.html" data-i18n="nav-forum">자유게시판</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-right">
+                <div class="lang-selector">
+                    <span id="lang-ko" class="lang-btn active" style="cursor: pointer;">KOR</span>
+                    |
+                    <span id="lang-en" class="lang-btn" style="cursor: pointer;">ENG</span>
+                </div>
+                <button class="search-btn"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
+                <a href="contact.html" class="btn-contact" data-i18n="contact-us">Contact Us</a>
+            </div>
+
+            <!-- Hamburger (mobile only) -->
+            <button class="hamburger-btn" id="hamburger-btn" aria-label="메뉴 열기">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://cdn.pixabay.com/video/2024/02/07/199740-911047178_large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay" style="background: rgba(255,255,255,0.1);"></div>
+        <div class="hero-content">
+            <h1 class="scroll-anim" data-i18n="hero-title" style="color: #003366; font-size: 5rem; font-weight: 900; letter-spacing: -2px;">Innovating the Future.<br>ROBOT-SOFT Corp.</h1>
+            <h2 class="scroll-anim" data-i18n="hero-subtitle" style="color: #333; font-size: 1.8rem; margin: 1rem 0;">로봇소프트 코퍼레이션과 함께<br>산업 자동화의 새로운 시대를 설계하세요.</h2>
+            <p class="scroll-anim" data-i18n="hero-desc" style="color: #555; max-width: 700px; line-height: 1.6;">로봇소프트 코퍼레이션은 독보적인 소프트웨어 기술과 첨단 로봇 공학을 결합하여 글로벌 산업 환경을 혁신하는 스마트 제조 솔루션을 제공합니다. AI 기반 자율 시스템과 정밀 제어 기술로 고객 가치를 실현합니다.</p>
+            <div class="hero-btns scroll-anim" style="margin-top: 2rem; display: flex; gap: 1rem;">
+                <a href="#solutions" class="btn-secondary" data-i18n="hero-btn-curriculum" style="background: rgba(255,255,255,0.8); color: #333;">Solutions</a>
+                <a href="#news" class="btn-secondary" data-i18n="hero-btn-gallery" style="background: rgba(255,255,255,0.8); color: #333;">History</a>
+                <a href="#contact" class="btn-primary" data-i18n="hero-btn-apply" style="background: #0088ff; border: none; color: #fff; padding: 1rem 2.5rem; font-weight: 800;">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="services-title">핵심 서비스 솔루션</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" alt="Core AI">
+                    </div>
+                    <div class="service-content">
+                        <span class="category" data-i18n="service-1-cat">Software</span>
+                        <h3 data-i18n="service-1-title">산업용 AI 브레인</h3>
+                        <p data-i18n="service-1-desc">자체 개발한 딥러닝 인지 엔진을 통해 산업 현장의 복잡한 환경을 실시간으로 분석하고 최적의 경로를 결정하는 핵심 AI 솔루션입니다.</p>
+                        <div class="arrow-btn"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="service-2.png" alt="Development">
+                    </div>
+                    <div class="service-content">
+                        <span class="category" data-i18n="service-2-cat">Platform</span>
+                        <h3 data-i18n="service-2-title">RCS 통합 플랫폼</h3>
+                        <p data-i18n="service-2-desc">다기종 로봇의 정밀한 모션 제어와 협동 로봇 운영을 최적화하며, 높은 안정성을 보장하는 전용 제어 소프트웨어 플랫폼입니다.</p>
+                        <div class="arrow-btn"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="service-3.png" alt="Engineering">
+                    </div>
+                    <div class="service-content">
+                        <span class="category" data-i18n="service-3-cat">Integration</span>
+                        <h3 data-i18n="service-3-title">특수 목적 임베디드 설계</h3>
+                        <p data-i18n="service-3-desc">고속 처리와 저전력을 동시에 구현하는 고성능 임베디드 시스템 설계를 통해 극한 환경에서도 구동 가능한 하드웨어 통합 서비스를 제공합니다.</p>
+                        <div class="arrow-btn"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img-wrapper">
+                        <img src="service-4.png" alt="Integration">
+                    </div>
+                    <div class="service-content">
+                        <span class="category" data-i18n="service-4-cat">Smart Factory</span>
+                        <h3 data-i18n="service-4-title">지능형 공정 자동화 (SI)</h3>
+                        <p data-i18n="service-4-desc">산업별 맞춤형 자동화 라인을 기획하고, 데이터 기반의 효율적인 시스템 통합(SI) 서비스를 통해 생산성을 극대화합니다.</p>
+                        <div class="arrow-btn"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="stats-section">
+        <div class="container">
+            <div class="stats-header">
+                <h2 class="stats-title" data-i18n="stats-title">숫자로 보는 ROBOT-SOFT</h2>
+                <a href="report.html" class="more-link" data-i18n="more-link">리포트 보기 <svg viewBox="0 0 24 24" width="16" height="16"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/></svg></a>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label" data-i18n="stat-1-label">총 시스템 통합 건수</span>
+                    <div class="stat-row">
+                        <div class="stat-value" data-target="5200">0</div>
+                        <span class="stat-unit">+</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label" data-i18n="stat-2-label">공정 오차 범위</span>
+                    <div class="stat-row">
+                        <div class="stat-value" data-target="0.01">0</div>
+                        <span class="stat-unit">mm</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label" data-i18n="stat-3-label">고객사 가동률</span>
+                    <div class="stat-row">
+                        <div class="stat-value" data-target="99.9">0</div>
+                        <span class="stat-unit">%</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label" data-i18n="stat-4-label">글로벌 파트너사</span>
+                    <div class="stat-row">
+                        <div class="stat-value" data-target="210">0</div>
+                        <span class="stat-unit">+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resources" class="stats-section" style="background:#fff; border-top:none; padding-top:0;">
+        <div class="container">
+            <div class="stats-header">
+                <h2 class="stats-title" data-i18n="resources-title">전문 자료실</h2>
+                <a href="resources.html" class="more-link" data-i18n="resources-more">더 알아보기 <svg viewBox="0 0 24 24" width="16" height="16"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/></svg></a>
+            </div>
+            
+            <div class="resource-slider-viewport">
+                <div class="resource-track" id="resource-track">
+                    <!-- Slide 1 -->
+                    <div class="resource-hero-card">
+                        <div class="resource-text">
+                            <span class="resource-category" data-i18n="res-1-cat">Tech Guide</span>
+                            <h3 data-i18n="res-1-title">스마트 팩토리 구축 및 제어 솔루션 기술 백서</h3>
+                            <p data-i18n="res-1-desc">제조 현장의 디지털 전환과 무인 자동화를 위한 핵심 제어 알고리즘 및 시스템 구축 가이드라인입니다.</p>
+                            <a href="whitepaper_detail.html" class="btn-outline" data-i18n="res-btn">백서 확인하기</a>
+                        </div>
+                        <div class="resource-image">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800" alt="Tech Guide">
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="resource-hero-card">
+                        <div class="resource-text">
+                            <span class="resource-category" data-i18n="res-2-cat">R&D Report</span>
+                            <h3 data-i18n="res-2-title">로봇소프트 코퍼레이션 연간 기술 혁신 리포트</h3>
+                            <p data-i18n="res-2-desc">당사가 개발 중인 차세대 지능형 로봇 및 자율주행 통합 시스템의 연구 성과와 기술 로드맵을 담은 공식 보고서입니다.</p>
+                            <a href="report.html" class="btn-outline" data-i18n="res-2-btn">리포트 확인</a>
+                        </div>
+                        <div class="resource-image">
+                            <img src="service-2.png" alt="Resource 2">
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="resource-hero-card">
+                        <div class="resource-text">
+                            <span class="resource-category" data-i18n="res-3-cat">Global Forum</span>
+                            <h3 data-i18n="res-3-title">RSC 글로벌 기술 포럼 하이라이트 및 세션 자료</h3>
+                            <p data-i18n="res-3-desc">세계적인 AI 및 로보틱스 전문가들이 참여하여 논의한 산업 자동화 기술의 미래와 당사의 전략 세션 자료집입니다.</p>
+                            <a href="forum_materials.html" class="btn-outline" data-i18n="res-3-btn">세션 자료 확인하기</a>
+                        </div>
+                        <div class="resource-image">
+                            <img src="service-3.png" alt="Resource 3">
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="resource-hero-card">
+                        <div class="resource-text">
+                            <span class="resource-category" data-i18n="res-4-cat">Partnership</span>
+                            <h3 data-i18n="res-4-title">전략적 파트너십: 글로벌 하이테크 기업 기술 얼라이언스</h3>
+                            <p data-i18n="res-4-desc">삼성전자, SK하이닉스 등 글로벌 리딩 기업과 함께하는 공동 기술 개발 및 협력 인프라 구축 매뉴얼입니다.</p>
+                            <a href="alliance_manual.html" class="btn-outline" data-i18n="res-4-btn">매뉴얼 확인하기</a>
+                        </div>
+                        <div class="resource-image">
+                            <img src="service-4.png" alt="Resource 4">
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="resource-hero-card">
+                        <div class="resource-text">
+                            <span class="resource-category" data-i18n="res-5-cat">Careers</span>
+                            <h3 data-i18n="res-5-title">로봇소프트 코퍼레이션 2026 글로벌 인재 채용 안내</h3>
+                            <p data-i18n="res-5-desc">로봇소프트와 함께 미래를 설계할 엔지니어 및 기획자를 위한 채용 절차와 복리후생, 최신 실습 연구소 안내 자료입니다.</p>
+                            <a href="careers.html" class="btn-outline" data-i18n="res-5-btn">채용 공고 보기</a>
+                        </div>
+                        <div class="resource-image">
+                            <img src="service-1.png" alt="Resource 5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-footer">
+                <div class="carousel-indicator">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+                <div class="carousel-arrows">
+                    <div class="arrow-circle prev" onclick="moveSlide(-1)"><svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg></div>
+                    <div class="arrow-circle next" onclick="moveSlide(1)"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="news" class="stats-section" style="background:#fff; border-top:1px solid #eee; padding-top:6rem;">
+        <div class="container">
+            <div class="stats-header">
+                <h2 class="stats-title" data-i18n="news-title">로봇소프트 코퍼레이션 소식</h2>
+                <a href="#" class="more-link" data-i18n="news-more">더 보기 <svg viewBox="0 0 24 24" width="16" height="16"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/></svg></a>
+            </div>
+            
+            <div class="news-slider-viewport">
+                <div class="news-track" id="news-slider-track">
+                    <!-- Slide 1 (Actual DMU News Images) -->
+                    <div class="news-slide">
+                        <div class="news-grid-track">
+                            <div class="news-card">
+                                <div class="news-img-box"><img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=800" alt="Global Tech Conference"></div>
+                                <span class="news-category" data-i18n="news-1-cat">Notice</span>
+                                <h3 class="news-headline" data-i18n="news-1-title">2026 로봇소프트 글로벌 기술 컨퍼런스 개최 확정</h3>
+                            </div>
+                             <div class="news-card">
+                                <div class="news-img-box"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800" alt="Innovation Award"></div>
+                                <span class="news-category" data-i18n="news-2-cat">Awards</span>
+                                <h3 class="news-headline" data-i18n="news-2-title">로봇소프트 코퍼레이션, '올해의 혁신 기술 기업' 최고상 수상</h3>
+                            </div>
+                            <div class="news-card">
+                                <div class="news-img-box"><img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&q=80&w=800" alt="Global License"></div>
+                                <span class="news-category" data-i18n="news-3-cat">License</span>
+                                <h3 class="news-headline" data-i18n="news-3-title">로봇소프트, 핵심 자율주행 원천 기술 글로벌 특허 및 라이선스 확보</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 (Items 4-6) -->
+                    <div class="news-slide">
+                        <div class="news-grid-track">
+                            <div class="news-card">
+                                <div class="news-img-box"><img src="service-4.png" alt="News 4"></div>
+                                <span class="news-category" data-i18n="news-4-cat">Event</span>
+                                <h3 class="news-headline" data-i18n="news-4-title">주요 고객사 대상 'RSC 차세대 통합 솔루션 런칭 이벤트' 성료</h3>
+                            </div>
+                            <div class="news-card">
+                                <div class="news-img-box"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800" alt="News 5"></div>
+                                <span class="news-category" data-i18n="news-5-cat">Infrastructure</span>
+                                <h3 class="news-headline" data-i18n="news-5-title">RSC 2연구소 스마트팩토리 테스트베드 고도화 및 신규 설비 도입</h3>
+                            </div>
+                            <div class="news-card">
+                                <div class="news-img-box"><img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" alt="News 6"></div>
+                                <span class="news-category" data-i18n="news-6-cat">Market</span>
+                                <h3 class="news-headline" data-i18n="news-6-title">로봇소프트 코퍼레이션, 2025 글로벌 고성장 테크 기업 TOP 10 선정</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-footer">
+                <div class="carousel-indicator">
+                    <div class="progress-bar-bg" style="width: 200px;">
+                        <div class="progress-bar-fill" id="news-progress-fill" style="width: 50%;"></div>
+                    </div>
+                </div>
+                <div class="carousel-arrows">
+                    <div class="arrow-circle prev" onclick="moveNewsSlide(-1)"><svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg></div>
+                    <div class="arrow-circle next" onclick="moveNewsSlide(1)" style="background:#0047bb;"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" style="fill:#fff;"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Banner Section -->
+    <section class="contact-banner">
+        <div class="container contact-flex">
+            <div class="contact-text">
+                <h2 data-i18n="contact-banner-title">문의하기</h2>
+                <p data-i18n="contact-banner-desc">로봇소프트 코퍼레이션이 궁금하다면?</p>
+            </div>
+            <a href="contact.html" class="contact-button" data-i18n="contact-us-btn">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- Learn More Section -->
+    <section class="learn-more">
+        <div class="container">
+            <h2 class="learn-more-title" data-i18n="learn-more-title">더 알아보기</h2>
+            <div class="learn-more-grid">
+                <div class="learn-more-item" onclick="location.href='newsroom.html'" style="cursor: pointer;">
+                    <h3 data-i18n="learn-more-1-title">뉴스룸</h3>
+                    <p data-i18n="learn-more-1-desc">뉴스, 기획 기사, 웨비나, 전문 자료 등 로봇소프트의 소식을 확인하세요.</p>
+                </div>
+                <div class="learn-more-item" onclick="location.href='investors.html'" style="cursor: pointer;">
+                    <h3 data-i18n="learn-more-2-title">투자 정보</h3>
+                    <p data-i18n="learn-more-2-desc">로봇소프트 코퍼레이션 주식 및 재무 성과 관련 정보를 제공합니다.</p>
+                </div>
+                <div class="learn-more-item" onclick="location.href='sustainability.html'" style="cursor: pointer;">
+                    <h3 data-i18n="learn-more-3-title">지속가능성</h3>
+                    <p data-i18n="learn-more-3-desc">로봇소프트 코퍼레이션 지속가능경영의 전략, 목표, 성과를 알아보세요.</p>
+                </div>
+                <div class="learn-more-item" onclick="location.href='careers.html'" style="cursor: pointer;">
+                    <h3 data-i18n="learn-more-4-title">채용</h3>
+                    <p data-i18n="learn-more-4-desc">로봇 공학 및 소프트웨어 분야의 다양한 채용 기회를 확인하세요.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="board" class="board-section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="board-title">Notice Board</h2>
+            <div class="board-container">
+                <div id="posts-list" class="posts-grid">
+                    <!-- Posts will be loaded here -->
+                </div>
+                <div class="board-actions" style="margin-top: 3rem; display: flex; justify-content: center;">
+                    <a href="board.html" class="btn-action" data-i18n="btn-write" style="text-decoration: none;">문의작성 / 포럼 바로가기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Modal -->
+    <div id="post-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 data-i18n="modal-title">새 게시글 작성</h3>
+            <form id="post-form">
+                <input type="text" id="post-title" data-i18n-placeholder="post-title-placeholder" placeholder="제목을 입력하세요" required>
+                <textarea id="post-content" data-i18n-placeholder="post-content-placeholder" placeholder="내용을 입력하세요" required></textarea>
+                <button type="submit" class="btn-action" data-i18n="btn-submit">등록하기</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Info Modal -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content" style="max-width: 500px; text-align: center; background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%); border: 1px solid rgba(0,71,187,0.1); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);">
+            <span class="close-btn" onclick="closeContactModal()">&times;</span>
+            <div class="contact-modal-header" style="margin-bottom: 2rem;">
+                <div style="width: 70px; height: 70px; background: #0088ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 10px 20px rgba(0,136,255,0.3);">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="#fff"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </div>
+                <h3 style="font-size: 1.8rem; font-weight: 800; color: #003366; margin-bottom: 0.5rem;" data-i18n="contact-modal-title">Contact Us</h3>
+                <p style="color: #666;" data-i18n="contact-modal-desc">우리의 기술 전문가가 답변해 드립니다.</p>
+            </div>
+            
+            <div class="contact-info-list" style="text-align: left; background: #fff; padding: 2rem; border-radius: 16px; border: 1px solid #eee;">
+                <div class="info-item" style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="width: 40px; height: 40px; background: #f0f4ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#0047bb"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; color: #888; font-weight: 600; text-transform: uppercase;" data-i18n="contact-direct">Direct Contact</div>
+                        <div style="font-size: 1.1rem; color: #333; font-weight: 700;">이선우 (Lee Sun-woo)</div>
+                    </div>
+                </div>
+                <div class="info-item" style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="width: 40px; height: 40px; background: #f0f4ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#0047bb"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; color: #888; font-weight: 600; text-transform: uppercase;" data-i18n="contact-email">Email</div>
+                        <div style="font-size: 1.1rem; color: #333; font-weight: 700;">lsw936402@gmail.com</div>
+                    </div>
+                </div>
+                <div class="info-item" style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="width: 40px; height: 40px; background: #f0f4ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#0047bb"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; color: #888; font-weight: 600; text-transform: uppercase;" data-i18n="contact-phone">Phone</div>
+                        <div style="font-size: 1.1rem; color: #333; font-weight: 700;">010-4784-1636</div>
+                    </div>
+                </div>
+                <div class="info-item" style="display: flex; align-items: center; gap: 1.5rem;">
+                    <div style="width: 40px; height: 40px; background: #f0f4ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#0047bb"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; color: #888; font-weight: 600; text-transform: uppercase;" data-i18n="contact-office">Office</div>
+                        <div style="font-size: 1.1rem; color: #333; font-weight: 700;">Seoul Tech Valley, Building A 501</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 1rem;">
+                <a href="board.html" class="btn-action" style="background: #0047bb; color: #fff; text-decoration: none; font-size: 0.9rem; padding: 0.8rem 1.5rem;" data-i18n="contact-consulting">1:1 기술 사전 상담</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p data-i18n="footer-copyright">&copy; 2026 ROBOT-SOFT Corp. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+    <script src="translations.js"></script>
+    <script>
+        // --- High-Reliability Counter Engine ---
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-value');
+            counters.forEach(counter => {
+                counter.textContent = "0";
+                const target = parseFloat(counter.getAttribute('data-target'));
+                const isFloat = counter.getAttribute('data-target').includes('.');
+                const duration = 3000;
+                const startTime = performance.now();
+
+                const update = (currentTime) => {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const easeProgress = 1 - Math.pow(1 - progress, 3);
+                    const currentValue = easeProgress * target;
+                    if (isFloat) counter.textContent = currentValue.toFixed(2);
+                    else counter.textContent = Math.floor(currentValue).toLocaleString();
+                    if (progress < 1) requestAnimationFrame(update);
+                    else counter.textContent = isFloat ? target.toFixed(2) : target.toLocaleString();
+                };
+                setTimeout(() => requestAnimationFrame(update), 500);
+            });
+        }
+
+        function initCounter() {
+            const statsSection = document.querySelector('.stats-section');
+            if (!statsSection) return;
+            let hasAnimated = false;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasAnimated) {
+                        animateCounters();
+                        hasAnimated = true;
+                    }
+                });
+            }, { threshold: 0.2 });
+            observer.observe(statsSection);
+            setTimeout(() => { if (!hasAnimated) animateCounters(); }, 5000);
+        }
+
+        let currentSlide = 0;
+        const totalSlides = 5;
+        function moveSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            const track = document.getElementById('resource-track');
+            const fill = document.getElementById('progress-fill');
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            fill.style.left = `${currentSlide * 20}%`;
+        }
+
+        let currentNewsSlide = 0;
+        const totalNewsSlides = 2;
+        function moveNewsSlide(direction) {
+            currentNewsSlide += direction;
+            if (currentNewsSlide >= totalNewsSlides) currentNewsSlide = 0;
+            if (currentNewsSlide < 0) currentNewsSlide = totalNewsSlides - 1;
+            const track = document.getElementById('news-slider-track');
+            const fill = document.getElementById('news-progress-fill');
+            track.style.transform = `translateX(-${currentNewsSlide * 100}%)`;
+            fill.style.left = `${currentNewsSlide * 50}%`;
+        }
+
+        window.addEventListener('load', initCounter);
+        ScrollReveal().reveal('.reveal', { delay: 200, origin: 'bottom', distance: '50px', duration: 1000 });
+        
+        // Expose functions to window for onclick handlers
+        window.moveSlide = moveSlide;
+        window.moveNewsSlide = moveNewsSlide;
+
+        // ── Hamburger menu toggle ──
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mainNav = document.getElementById('main-nav');
+        if (hamburgerBtn && mainNav) {
+            hamburgerBtn.addEventListener('click', () => {
+                hamburgerBtn.classList.toggle('active');
+                mainNav.classList.toggle('open');
+                document.body.style.overflow = mainNav.classList.contains('open') ? 'hidden' : '';
+            });
+            // Close on nav link click
+            mainNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburgerBtn.classList.remove('active');
+                    mainNav.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
