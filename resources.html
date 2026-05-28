@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전문 자료실 | ROBOT-SOFT Corp.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { background: #fff; color: #111; overflow-x: hidden; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+        .header-section { display: flex; justify-content: space-between; align-items: flex-end; padding: 80px 0 40px; }
+        .header-section h1 { font-size: 2.2rem; font-weight: 900; color: #0047bb; margin: 0; }
+        .more-link { color: #0047bb; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; }
+        .more-link::after { content: '→'; margin-left: 8px; transition: transform 0.3s ease; }
+        .more-link:hover::after { transform: translateX(5px); }
+
+        /* Resource Carousel */
+        .resource-carousel-container { width: 100%; overflow: hidden; position: relative; padding-bottom: 60px; }
+        .resource-track { display: flex; gap: 40px; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); cursor: grab; }
+        .resource-track:active { cursor: grabbing; }
+
+        .resource-card { min-width: 1000px; display: flex; background: #f8faff; border-radius: 4px; overflow: hidden; height: 500px; }
+        .card-text { flex: 1.2; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+        .card-visual { flex: 1.8; overflow: hidden; position: relative; }
+        .card-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+        .resource-card:hover .card-visual img { transform: scale(1.05); }
+
+        .category-tag { color: #0088ff; font-weight: 800; font-size: 0.95rem; margin-bottom: 25px; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
+        .card-title { font-size: 2.2rem; font-weight: 900; margin-bottom: 30px; line-height: 1.3; letter-spacing: -1px; }
+        .card-desc { color: #666; line-height: 1.7; font-size: 1.05rem; margin-bottom: 40px; max-width: 500px; }
+
+        .action-btn { display: inline-flex; align-items: center; justify-content: center; padding: 15px 40px; border: 1px solid #0047bb; border-radius: 50px; color: #0047bb; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s ease; background: transparent; }
+        .action-btn:hover { background: #0047bb; color: #fff; box-shadow: 0 10px 20px rgba(0,71,187,0.15); }
+
+        /* Navigation Arrows */
+        .carousel-nav { display: flex; justify-content: flex-end; align-items: center; gap: 15px; margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px; }
+        .nav-progress { position: relative; width: 300px; height: 2px; background: #eee; margin-right: auto; }
+        .progress-fill { position: absolute; top: 0; left: 0; height: 100%; background: #222; width: 20%; transition: width 0.6s ease; }
+        
+        .arrow-btn { width: 50px; height: 50px; border-radius: 50%; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; background: #fff; }
+        .arrow-btn:hover { background: #f8faff; border-color: #0047bb; color: #0047bb; }
+        .arrow-btn svg { width: 20px; height: 20px; fill: currentColor; }
+
+        @media (max-width: 1100px) {
+            .resource-card { min-width: 90%; height: auto; flex-direction: column; }
+            .card-visual { height: 350px; }
+            .card-text { padding: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-container">
+            <div class="search-bar-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" width="30" height="30"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="search-input" placeholder="Search..." data-i18n-placeholder="search-placeholder">
+                <button class="search-close" id="search-close-btn">&times;</button>
+            </div>
+            <div class="search-quick-links">
+                <p class="quick-links-title" data-i18n="quick-links-title">Quick Links</p>
+                <ul>
+                    <li><a href="index.html#services" data-i18n="quick-link-1">??Core Solutions</a></li>
+                    <li><a href="newsroom.html" data-i18n="quick-link-2">??Latest News</a></li>
+                    <li><a href="board.html" data-i18n="quick-link-3">??Technology Forum</a></li>
+                    <li><a href="contact.html" data-i18n="quick-link-4">??Contact Experts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <header class="main-header" style="position: sticky; top: 0; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #eee;">
+        <div class="header-container">
+            <div class="logo-area" onclick="location.href='index.html'" style="cursor: pointer;">
+                <svg width="36" height="36" viewBox="0 0 100 100">
+                    <rect x="5" y="5" width="90" height="90" rx="18" fill="#0047bb" />
+                    <text x="50" y="65" font-family="Inter" font-weight="900" font-size="50" fill="#fff" text-anchor="middle">R</text>
+                </svg>
+                <span class="dept-name">ROBOT-SOFT Corp.</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#about" data-i18n="nav-about">기업소개</a></li>
+                    <li><a href="index.html#services" data-i18n="nav-services">솔루션</a></li>
+                    <li><a href="tech-team.html" data-i18n="nav-faculty">기술진</a></li>
+                    <li><a href="newsroom.html" data-i18n="nav-news">기업소식</a></li>
+                    <li><a href="resources.html" class="active" data-i18n="nav-resources">자료실</a></li>
+                </ul>
+            </nav>
+                        <div class="header-right">
+                <div class="lang-selector">
+                    <span id="lang-ko" class="lang-btn active" style="cursor: pointer;">KOR</span>
+                    |
+                    <span id="lang-en" class="lang-btn" style="cursor: pointer;">ENG</span>
+                </div>
+                <button class="search-btn"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
+                <a href="contact.html" class="btn-contact" data-i18n="contact-us">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="header-section">
+            <h1 data-i18n="resources-title">전문 자료실</h1>
+            <a href="#" class="more-link" data-i18n="resources-more">더 알아보기</a>
+        </div>
+
+        <div class="resource-carousel-container">
+            <div class="resource-track" id="resourceTrack">
+                
+                <!-- Slide 1: Tech Guide -->
+                <div class="resource-card">
+                    <div class="card-text">
+                        <span class="category-tag" data-i18n="res-1-cat">Tech Guide</span>
+                        <h2 class="card-title" data-i18n="res-1-title">스마트 팩토리 구축 및 제어 솔루션 기술 백서</h2>
+                        <p class="card-desc" data-i18n="res-1-desc">제조 현장의 디지털 전환과 무인 자동화를 위한 핵심 제어 알고리즘 및 시스템 구축 가이드라인입니다.</p>
+                        <a href="whitepaper_detail.html" class="action-btn" data-i18n="res-btn-2">백서 확인하기</a>
+                    </div>
+                    <div class="card-visual">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200" alt="Tech Dashboard Visual">
+                    </div>
+                </div>
+
+                <!-- Slide 2: R&D Report -->
+                <div class="resource-card">
+                    <div class="card-text">
+                        <span class="category-tag" data-i18n="res-2-cat">R&D Report</span>
+                        <h2 class="card-title" data-i18n="res-2-title">로봇소프트 코퍼레이션 연간 기술 혁신 리포트</h2>
+                        <p class="card-desc" data-i18n="res-2-desc">당사가 개발 중인 차세대 지능형 로봇 및 자율주행 통합 시스템의 연구 성과와 기술 로드맵을 담은 공식 보고서입니다.</p>
+                        <a href="report.html" class="action-btn" data-i18n="res-2-btn">리포트 확인</a>
+                    </div>
+                    <div class="card-visual">
+                        <img src="https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?auto=format&fit=crop&q=80&w=1200" alt="Robotics Concept Art">
+                    </div>
+                </div>
+
+                <!-- Slide 3: Global Forum -->
+                <div class="resource-card">
+                    <div class="card-text">
+                        <span class="category-tag" data-i18n="res-3-cat">Global Forum</span>
+                        <h2 class="card-title" data-i18n="res-3-title">RSC 글로벌 기술 포럼 하이라이트 및 세션 자료</h2>
+                        <p class="card-desc" data-i18n="res-3-desc">세계적인 AI 및 로보틱스 전문가들이 참여하여 논의한 산업 자동화 기술의 미래와 당사의 전략 세션 자료집입니다.</p>
+                        <a href="forum_materials.html" class="action-btn" data-i18n="res-3-btn">세션 자료 확인하기</a>
+                    </div>
+                    <div class="card-visual">
+                        <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=1200" alt="Technical Forum Visual">
+                    </div>
+                </div>
+
+                <!-- Slide 4: Partnership -->
+                <div class="resource-card">
+                    <div class="card-text">
+                        <span class="category-tag" data-i18n="res-4-cat">Partnership</span>
+                        <h2 class="card-title" data-i18n="res-4-title">전략적 파트너십: 글로벌 하이테크 기업 기술 얼라이언스</h2>
+                        <p class="card-desc" data-i18n="res-4-desc">삼성전자, SK하이닉스 등 글로벌 리딩 기업과 함께하는 공동 기술 개발 및 협력 인프라 구축 매뉴얼입니다.</p>
+                        <a href="alliance_manual.html" class="action-btn" data-i18n="res-4-btn">매뉴얼 확인하기</a>
+                    </div>
+                    <div class="card-visual">
+                        <img src="https://images.unsplash.com/photo-1573166364524-d9dbfd8bbf83?auto=format&fit=crop&q=80&w=1200" alt="Professional Tech Alliance">
+                    </div>
+                </div>
+
+                <!-- Slide 5: Careers -->
+                <div class="resource-card">
+                    <div class="card-text">
+                        <span class="category-tag" data-i18n="res-5-cat">Careers</span>
+                        <h2 class="card-title" data-i18n="res-5-title">로봇소프트 코퍼레이션 2026 글로벌 인재 채용 안내</h2>
+                        <p class="card-desc" data-i18n="res-5-desc">로봇소프트와 함께 미래를 설계할 엔지니어 및 기획자를 위한 채용 절차와 복리후생, 최신 실습 연구소 안내 자료입니다.</p>
+                        <a href="careers.html" class="action-btn" data-i18n="res-5-btn">채용 공고 보기</a>
+                    </div>
+                    <div class="card-visual">
+                        <img src="https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?auto=format&fit=crop&q=80&w=1200" alt="Tech Recruiting Visual">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="carousel-nav">
+                <div class="nav-progress">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="arrow-btn" id="prevBtn">
+                    <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                </div>
+                <div class="arrow-btn" id="nextBtn">
+                    <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const track = document.getElementById('resourceTrack');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const progressFill = document.getElementById('progressFill');
+        const cards = document.querySelectorAll('.resource-card');
+        
+        let currentIndex = 0;
+        const totalCards = cards.length;
+        
+        function updateCarousel() {
+            const cardWidth = cards[0].offsetWidth + 40; // width + gap
+            track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+            
+            // Update progress bar
+            const progress = ((currentIndex + 1) / totalCards) * 100;
+            progressFill.style.width = `${progress}%`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < totalCards - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        // Initialize progress
+        window.addEventListener('load', updateCarousel);
+        window.addEventListener('resize', updateCarousel);
+    </script>
+
+    <script src="translations.js"></script>
+</body>
+</html>

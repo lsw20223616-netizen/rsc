@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지속가능성 | ROBOT-SOFT Corp.</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body { background: #fff; color: #111; overflow-x: hidden; font-family: 'Noto Sans KR', 'Inter', sans-serif; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+        /* ── Breadcrumb ── */
+        .breadcrumb {
+            background: #f8faff;
+            border-bottom: 1px solid #eee;
+            padding: 14px 0;
+        }
+        .breadcrumb-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            font-size: 0.85rem;
+            color: #999;
+        }
+        .breadcrumb-inner a { color: #999; text-decoration: none; }
+        .breadcrumb-inner a:hover { color: #0047bb; }
+        .breadcrumb-inner span { margin: 0 6px; }
+
+        /* ── Page Hero ── */
+        .sus-hero {
+            background: linear-gradient(135deg, #001945 0%, #003399 50%, #0055cc 100%);
+            padding: 80px 0 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        .sus-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .sus-hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .sus-hero-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            color: #aac8ff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+        .sus-hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #fff;
+            margin: 0 0 16px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+        .sus-hero p {
+            color: rgba(255,255,255,0.75);
+            font-size: 1.1rem;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        /* ── Section Tabs ── */
+        .sus-tabs {
+            background: #fff;
+            border-bottom: 2px solid #eee;
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+        }
+        .sus-tabs-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            gap: 0;
+        }
+        .sus-tab {
+            padding: 18px 28px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #888;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+        .sus-tab:hover, .sus-tab.active {
+            color: #0047bb;
+            border-bottom-color: #0047bb;
+        }
+
+        /* ── Promise Section ── */
+        .promise-section {
+            padding: 80px 0 70px;
+            background: #fff;
+        }
+        .promise-grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 60px;
+            align-items: start;
+        }
+        .promise-text h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #001945;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+            line-height: 1.3;
+        }
+        .promise-quote {
+            background: #f0f6ff;
+            border-left: 4px solid #0047bb;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+            border-radius: 0 8px 8px 0;
+        }
+        .promise-quote p {
+            color: #0047bb;
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.7;
+            margin: 0;
+        }
+        .promise-text p {
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.85;
+            margin-bottom: 18px;
+        }
+        .promise-text p:last-child { margin-bottom: 0; }
+        .promise-text strong { color: #001945; font-weight: 700; }
+
+        /* ── Seal Card ── */
+        .seal-card {
+            background: linear-gradient(145deg, #001945 0%, #003399 100%);
+            border-radius: 16px;
+            padding: 48px 32px;
+            text-align: center;
+            position: sticky;
+            top: 130px;
+        }
+        .seal-emblem {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 28px;
+        }
+        .seal-card p {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .seal-card strong { color: #fff; }
+
+        /* ── Divider ── */
+        .section-divider {
+            height: 1px;
+            background: #eee;
+            margin: 0;
+        }
+
+        /* ── Activity Section ── */
+        .activity-section {
+            padding: 80px 0;
+            background: #f8faff;
+        }
+        .section-header {
+            margin-bottom: 50px;
+        }
+        .section-tag {
+            display: inline-block;
+            color: #0088ff;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #001945;
+            letter-spacing: -0.5px;
+        }
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .activity-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .activity-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+        }
+        .activity-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .activity-body {
+            padding: 28px;
+        }
+        .activity-cat {
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: #0088ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .activity-body h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .activity-body p {
+            font-size: 0.9rem;
+            color: #777;
+            line-height: 1.7;
+        }
+
+        /* ── ESG Metrics ── */
+        .esg-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+        .esg-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: #eee;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 50px;
+        }
+        .esg-item {
+            background: #fff;
+            padding: 48px 36px;
+            text-align: center;
+        }
+        .esg-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.6rem;
+        }
+        .esg-icon.green { background: #e8f8ef; }
+        .esg-icon.blue { background: #e8f0ff; }
+        .esg-icon.purple { background: #f3e8ff; }
+        .esg-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .esg-value {
+            font-size: 2.6rem;
+            font-weight: 900;
+            color: #001945;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .esg-unit {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #888;
+        }
+        .esg-desc {
+            font-size: 0.88rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* ── Goals Section ── */
+        .goals-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #001945 0%, #003399 100%);
+        }
+        .goals-section .section-tag { color: #aac8ff; }
+        .goals-section .section-header h2 { color: #fff; }
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 50px;
+        }
+        .goal-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 36px 24px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .goal-card:hover { background: rgba(255,255,255,0.14); }
+        .goal-year {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #aac8ff;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .goal-value {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+        .goal-desc {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+        .goal-progress {
+            margin-top: 20px;
+            height: 4px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .goal-progress-fill {
+            height: 100%;
+            background: #4d9fff;
+            border-radius: 2px;
+            transition: width 1.5s ease;
+        }
+
+        /* ── Report CTA ── */
+        .report-cta {
+            padding: 80px 0;
+            background: #f8faff;
+        }
+        .cta-box {
+            background: #fff;
+            border-radius: 20px;
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+        }
+        .cta-text h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #001945;
+            margin-bottom: 12px;
+        }
+        .cta-text p { color: #666; font-size: 1rem; line-height: 1.7; }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: #0047bb;
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .cta-btn:hover {
+            background: #003399;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,71,187,0.3);
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: #f8f9fa;
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 900px) {
+            .promise-grid { grid-template-columns: 1fr; }
+            .seal-card { position: static; }
+            .activity-grid { grid-template-columns: 1fr; }
+            .esg-grid { grid-template-columns: 1fr; }
+            .goals-grid { grid-template-columns: repeat(2, 1fr); }
+            .cta-box { flex-direction: column; text-align: center; }
+            .sus-hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Search Overlay -->
+    <div id="search-overlay" class="search-overlay">
+        <div class="search-container">
+            <div class="search-bar-wrap">
+                <svg class="search-icon" viewBox="0 0 24 24" width="30" height="30"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" id="search-input" placeholder="Search..." data-i18n-placeholder="search-placeholder">
+                <button class="search-close" id="search-close-btn">&times;</button>
+            </div>
+            <div class="search-quick-links">
+                <p class="quick-links-title" data-i18n="quick-links-title">Quick Links</p>
+                <ul>
+                    <li><a href="index.html#services" data-i18n="quick-link-1">→ Core Solutions</a></li>
+                    <li><a href="newsroom.html" data-i18n="quick-link-2">→ Latest News</a></li>
+                    <li><a href="board.html" data-i18n="quick-link-3">→ Technology Forum</a></li>
+                    <li><a href="contact.html" data-i18n="quick-link-4">→ Contact Experts</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header" style="position: sticky; top: 0; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #eee;">
+        <div class="header-container">
+            <div class="logo-area" onclick="location.href='index.html'" style="cursor:pointer;">
+                <svg width="36" height="36" viewBox="0 0 100 100">
+                    <defs><linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#0088ff"/><stop offset="100%" style="stop-color:#003366"/></linearGradient></defs>
+                    <rect x="5" y="5" width="90" height="90" rx="18" fill="url(#lg)"/>
+                    <path d="M35 30V70M35 30H55C60.5 30 65 34.5 65 40V45C65 50.5 60.5 55 55 55H35M55 55L70 70" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+                <span class="dept-name" style="font-weight:800;color:#003366;">ROBOT-SOFT Corp.</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#about" data-i18n="nav-about">기업소개</a></li>
+                    <li><a href="index.html#services" data-i18n="nav-services">솔루션</a></li>
+                    <li><a href="tech-team.html" data-i18n="nav-faculty">기술진</a></li>
+                    <li><a href="newsroom.html" data-i18n="nav-news">기업소식</a></li>
+                    <li><a href="board.html" data-i18n="nav-board">포럼</a></li>
+                    <li><a href="forum.html" data-i18n="nav-forum">자유게시판</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="lang-selector">
+                    <span id="lang-ko" class="lang-btn active" style="cursor: pointer;">KOR</span>
+                    |
+                    <span id="lang-en" class="lang-btn" style="cursor: pointer;">ENG</span>
+                </div>
+                <button class="search-btn"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
+                <a href="contact.html" class="btn-contact" data-i18n="contact-us">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-inner">
+            <a href="index.html" data-i18n="nav-about-home">Home</a>
+            <span>›</span>
+            <a href="#">About Us</a>
+            <span>›</span>
+            <span data-i18n="sus-breadcrumb">지속가능성</span>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="sus-hero">
+        <div class="sus-hero-inner">
+            <div class="sus-hero-tag" data-i18n="sus-hero-tag">ESG &amp; SUSTAINABILITY</div>
+            <h1 data-i18n="sus-hero-title">지속가능한 미래를<br>위한 약속</h1>
+            <p data-i18n="sus-hero-desc">로봇소프트 코퍼레이션은 기술 혁신과 함께 환경·사회·지배구조 전반에 걸쳐 지속가능경영을 실천합니다.</p>
+        </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <div class="sus-tabs">
+        <div class="sus-tabs-inner">
+            <a href="#promise" class="sus-tab active" data-i18n="sus-tab-1">지속가능 약속</a>
+            <a href="#activity" class="sus-tab" data-i18n="sus-tab-2">활동 사례</a>
+            <a href="#esg" class="sus-tab" data-i18n="sus-tab-3">ESG 지표</a>
+            <a href="#goals" class="sus-tab" data-i18n="sus-tab-4">2030 목표</a>
+        </div>
+    </div>
+
+    <!-- Promise Section -->
+    <section class="promise-section" id="promise">
+        <div class="container">
+            <div class="promise-grid">
+                <div class="promise-text">
+                    <h2 data-i18n="sus-promise-title">지속가능한 미래를 위한 약속</h2>
+                    <div class="promise-quote">
+                        <p data-i18n="sus-promise-quote">"더 스마트한 세상, 지속가능한 미래를 위해 로봇소프트 코퍼레이션은<br>모든 비즈니스 의사 결정에서 지속가능성을 고려하며 친환경 행보에 앞장섭니다."</p>
+                    </div>
+                    <p data-i18n="sus-promise-p1">로봇소프트 코퍼레이션은 차별화된 기술력 확보로 품질과 안전성을 강화하고, 지능형 로봇 공급망 구축을 통해 고품질의 산업 자동화 솔루션으로 인류의 더 나은 삶을 실현한다는 비전을 실천하며, 글로벌 기업으로서의 사회적 책임을 확대함과 동시에 지속가능경영의 기반을 마련해왔습니다.</p>
+                    <p data-i18n="sus-promise-p2">앞으로도 당사는 기후변화 대응을 위해 친환경 투자를 지속적으로 확대하고, 사업장 내 에너지 절감 노력을 강화하는 한편, 글로벌 탄소정보공개프로젝트(CDP) 참여를 통해 지속 가능한 미래를 위한 실천을 이어가겠습니다. 아울러, 소외계층 지원 사업 등의 다양한 사회공헌 활동을 통해 지역 사회와 함께 성장하고, 글로벌 로봇 인재 육성을 위해 <strong>NIRT(National Institute for Robotics Training)</strong>에 적극적으로 참여하므로써 사회환경적 책임을 다하고, 상생경영을 정착시키겠습니다.</p>
+                </div>
+
+                <!-- Seal -->
+                <div class="seal-card">
+                    <div class="seal-emblem">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Outer ring -->
+                            <circle cx="100" cy="100" r="96" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                            <circle cx="100" cy="100" r="88" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+                            <!-- Decorative dots around ring -->
+                            <g fill="rgba(255,255,255,0.5)">
+                                <circle cx="100" cy="6" r="3"/>
+                                <circle cx="100" cy="194" r="3"/>
+                                <circle cx="6" cy="100" r="3"/>
+                                <circle cx="194" cy="100" r="3"/>
+                                <circle cx="29" cy="29" r="2"/>
+                                <circle cx="171" cy="29" r="2"/>
+                                <circle cx="29" cy="171" r="2"/>
+                                <circle cx="171" cy="171" r="2"/>
+                            </g>
+                            <!-- Crown at top -->
+                            <g transform="translate(75, 20)" fill="rgba(255,255,255,0.9)">
+                                <polygon points="25,0 0,20 8,20 8,30 42,30 42,20 50,20" />
+                                <circle cx="0" cy="0" r="4"/>
+                                <circle cx="25" cy="0" r="4" fill="#ffd700"/>
+                                <circle cx="50" cy="0" r="4"/>
+                            </g>
+                            <!-- Leaf branches left -->
+                            <g stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none" transform="translate(15,70)">
+                                <path d="M0,30 Q10,10 20,0"/>
+                                <path d="M5,40 Q18,25 25,10"/>
+                                <path d="M3,50 Q15,40 18,28"/>
+                                <ellipse cx="22" cy="-2" rx="6" ry="4" transform="rotate(-30,22,-2)" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.5)"/>
+                                <ellipse cx="27" cy="8" rx="6" ry="4" transform="rotate(-20,27,8)" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.5)"/>
+                                <ellipse cx="20" cy="26" rx="6" ry="4" transform="rotate(-15,20,26)" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.5)"/>
+                            </g>
+                            <!-- Leaf branches right -->
+                            <g stroke="rgba(255,255,255,0.6)" stroke-width="1.5" fill="none" transform="translate(185,70) scale(-1,1)">
+                                <path d="M0,30 Q10,10 20,0"/>
+                                <path d="M5,40 Q18,25 25,10"/>
+                                <path d="M3,50 Q15,40 18,28"/>
+                                <ellipse cx="22" cy="-2" rx="6" ry="4" transform="rotate(-30,22,-2)" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.5)"/>
+                                <ellipse cx="27" cy="8" rx="6" ry="4" transform="rotate(-20,27,8)" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.5)"/>
+                                <ellipse cx="20" cy="26" rx="6" ry="4" transform="rotate(-15,20,26)" fill="rgba(255,255,255,0.3)" stroke="rgba(255,255,255,0.5)"/>
+                            </g>
+                            <!-- Center text -->
+                            <text x="100" y="95" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="22" fill="white" letter-spacing="3">GREEN</text>
+                            <text x="100" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="16" fill="rgba(255,255,255,0.85)" letter-spacing="1">ROBOT-SOFT</text>
+                            <text x="100" y="142" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="rgba(255,255,255,0.65)" letter-spacing="4">SEAL</text>
+                            <!-- Bottom arc text path -->
+                            <path id="arcBottom" d="M 30,150 A 80,80 0 0,0 170,150" fill="none"/>
+                            <text font-size="9" fill="rgba(255,255,255,0.55)" letter-spacing="2">
+                                <textPath href="#arcBottom" startOffset="10%">SUSTAINABILITY · INNOVATION · RESPONSIBILITY</textPath>
+                            </text>
+                        </svg>
+                    </div>
+                    <p data-i18n="sus-seal-desc">로봇소프트 코퍼레이션은 지속가능한 시장 형성을 위한 끊임없는 혁신과 실천을 인정받아 <strong>Green Robot-Soft Seal</strong>을 획득했습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Activity Section -->
+    <section class="activity-section" id="activity">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag" data-i18n="sus-activity-tag">활동 사례</div>
+                <h2 data-i18n="sus-activity-title">지속가능경영 실천 활동</h2>
+            </div>
+            <div class="activity-grid">
+                <div class="activity-card">
+                    <img class="activity-img" src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800" alt="친환경 에너지">
+                    <div class="activity-body">
+                        <div class="activity-cat" data-i18n="sus-act-1-cat">Environment</div>
+                        <h3 data-i18n="sus-act-1-title">스마트 팩토리 탄소 중립 프로젝트</h3>
+                        <p data-i18n="sus-act-1-desc">AI 기반 에너지 최적화 알고리즘을 자사 연구소에 적용하여 2025년 대비 탄소 배출량을 32% 절감하였습니다.</p>
+                    </div>
+                </div>
+                <div class="activity-card">
+                    <img class="activity-img" src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&q=80&w=800" alt="사회공헌">
+                    <div class="activity-body">
+                        <div class="activity-cat" data-i18n="sus-act-2-cat">Social</div>
+                        <h3 data-i18n="sus-act-2-title">미래 로봇 인재 육성 장학 프로그램</h3>
+                        <p data-i18n="sus-act-2-desc">소외 계층 청소년을 대상으로 연간 100명의 AI·로봇공학 장학생을 선발, 전액 장학금과 인턴십 기회를 제공합니다.</p>
+                    </div>
+                </div>
+                <div class="activity-card">
+                    <img class="activity-img" src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&q=80&w=800" alt="지배구조">
+                    <div class="activity-body">
+                        <div class="activity-cat" data-i18n="sus-act-3-cat">Governance</div>
+                        <h3 data-i18n="sus-act-3-title">ESG 위원회 설립 및 투명 경영 강화</h3>
+                        <p data-i18n="sus-act-3-desc">이사회 산하 ESG 전담 위원회를 설립하고 분기별 지속가능경영 보고서를 공시하여 투명한 경영을 실천하고 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESG Metrics -->
+    <section class="esg-section" id="esg">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag" data-i18n="sus-esg-tag">ESG 지표</div>
+                <h2 data-i18n="sus-esg-title">2025년 ESG 성과</h2>
+            </div>
+            <div class="esg-grid">
+                <div class="esg-item">
+                    <div class="esg-icon green">🌿</div>
+                    <div class="esg-label" data-i18n="sus-esg-e">Environment</div>
+                    <div class="esg-value">32<span class="esg-unit">%</span></div>
+                    <div class="esg-desc" data-i18n="sus-esg-e-desc">전년 대비 탄소 배출량 감소율<br>재생에너지 비율 68% 달성</div>
+                </div>
+                <div class="esg-item">
+                    <div class="esg-icon blue">🤝</div>
+                    <div class="esg-label" data-i18n="sus-esg-s">Social</div>
+                    <div class="esg-value">100<span class="esg-unit">+</span></div>
+                    <div class="esg-desc" data-i18n="sus-esg-s-desc">연간 장학생 지원 인원<br>사회공헌 투자액 12억원</div>
+                </div>
+                <div class="esg-item">
+                    <div class="esg-icon purple">⚖️</div>
+                    <div class="esg-label" data-i18n="sus-esg-g">Governance</div>
+                    <div class="esg-value">AA<span class="esg-unit" data-i18n="sus-esg-grade-unit"> 등급</span></div>
+                    <div class="esg-desc" data-i18n="sus-esg-g-desc">한국ESG기준원 AA 등급 획득<br>이사회 독립 이사 비율 60%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2030 Goals -->
+    <section class="goals-section" id="goals">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag" data-i18n="sus-goals-tag">2030 목표</div>
+                <h2 data-i18n="sus-goals-title">지속가능경영 2030 로드맵</h2>
+            </div>
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <div class="goal-year">2030 TARGET</div>
+                    <div class="goal-value" data-i18n="sus-goal-1-value">탄소 중립</div>
+                    <div class="goal-desc" data-i18n="sus-goal-1-desc">전 사업장 넷제로(Net-Zero) 달성 및 공급망 탄소 배출 50% 감축 목표</div>
+                    <div class="goal-progress"><div class="goal-progress-fill" style="width: 55%"></div></div>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-year">2030 TARGET</div>
+                    <div class="goal-value">RE100</div>
+                    <div class="goal-desc" data-i18n="sus-goal-2-desc">전 사업장 재생에너지 100% 전환 및 태양광 자가 발전 설비 확대</div>
+                    <div class="goal-progress"><div class="goal-progress-fill" style="width: 68%"></div></div>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-year">2030 TARGET</div>
+                    <div class="goal-value" data-i18n="sus-goal-3-value">1,000명+</div>
+                    <div class="goal-desc" data-i18n="sus-goal-3-desc">글로벌 로봇 인재 장학 누적 1,000명 이상 지원 및 취업 연계 강화</div>
+                    <div class="goal-progress"><div class="goal-progress-fill" style="width: 40%"></div></div>
+                </div>
+                <div class="goal-card">
+                    <div class="goal-year">2030 TARGET</div>
+                    <div class="goal-value" data-i18n="sus-goal-4-value">AAA 등급</div>
+                    <div class="goal-desc" data-i18n="sus-goal-4-desc">MSCI ESG AAA 등급 달성 및 DJSI World 편입을 통한 글로벌 ESG 리더십 확립</div>
+                    <div class="goal-progress"><div class="goal-progress-fill" style="width: 75%"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report CTA -->
+    <section class="report-cta">
+        <div class="container">
+            <div class="cta-box">
+                <div class="cta-text">
+                    <h2 data-i18n="sus-cta-title">지속가능경영 보고서 다운로드</h2>
+                    <p data-i18n="sus-cta-desc">로봇소프트 코퍼레이션의 2025 지속가능경영 보고서를 통해 환경, 사회, 지배구조 전반에 걸친 성과와 전략을 확인하세요.</p>
+                </div>
+                <a href="report.html" class="cta-btn" data-i18n="sus-cta-btn">
+                    📄 보고서 보기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p data-i18n="footer-copyright">© 2026 ROBOT-SOFT Corp. All rights reserved.</p>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script>
+        // Tab active state on scroll
+        const tabs = document.querySelectorAll('.sus-tab');
+        const sections = ['promise','activity','esg','goals'].map(id => document.getElementById(id));
+
+        window.addEventListener('scroll', () => {
+            let current = 'promise';
+            sections.forEach(sec => {
+                if (sec && window.scrollY >= sec.offsetTop - 200) current = sec.id;
+            });
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.getAttribute('href') === '#' + current) tab.classList.add('active');
+            });
+        });
+
+        // Smooth tab click
+        tabs.forEach(tab => {
+            tab.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(tab.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
